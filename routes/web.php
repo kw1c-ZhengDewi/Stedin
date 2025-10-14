@@ -22,3 +22,5 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::get('/index', fn () => Inertia::render('index'))->name('index');
