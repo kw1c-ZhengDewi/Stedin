@@ -6,7 +6,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 <!-- Test Page -->
 <template>
 <AppLayout>
-
+<p>Test</p>
 </AppLayout>
 </template>
 
