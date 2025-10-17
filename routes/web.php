@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -24,3 +25,8 @@ Route::middleware([
 });
 
 Route::get('/index', fn () => Inertia::render('index'))->name('index');
+
+
+// Register Page
+Route::post('/register', [UserController::class, 'register'])->name('register');
+

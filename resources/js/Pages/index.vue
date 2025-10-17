@@ -7,7 +7,6 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 <template>
 <AppLayout>
 
-
 </AppLayout>
 </template>
 

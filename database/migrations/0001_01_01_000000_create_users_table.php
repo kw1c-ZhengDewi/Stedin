@@ -13,14 +13,20 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('first_name')->nullable(); // Temporary
+            $table->string('last_name')->nullable(); // Temporary
+            $table->string('username')->unique();
+            $table->enum('role', ['operator', 'project coordinator'])->default('operator');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('phone_country_code')->nullable(); // Temporary // Country calling code, Example: +31
+            $table->string('phone_number')->nullable(); // Temporary // Phone number without the calling code
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
+
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
