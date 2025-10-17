@@ -28,5 +28,5 @@ Route::get('/index', fn () => Inertia::render('index'))->name('index');
 
 
 // Register Page
-Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::post('/register', [UserController::class, 'register'])->name('user.register');
 
