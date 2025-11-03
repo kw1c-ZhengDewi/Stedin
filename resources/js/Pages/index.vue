@@ -6,7 +6,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 <!-- Test Page -->
 <template>
 <AppLayout>
-<p></p>
+    <p>Test New Branch</p>
 </AppLayout>
 </template>
 
