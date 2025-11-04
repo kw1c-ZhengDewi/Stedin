@@ -31,6 +31,8 @@ Route::post('/register', [UserController::class, 'register'])->name('user.regist
 
 /* Vue Pages Stedin  */
 
+Route::get('/', fn() => Inertia::render('Index'))->name('index'); // Before Login and Register page: Front page
+
 // Nav Project
 Route::get('/project', fn() => Inertia::render('Project'))->name('project');
 
@@ -42,4 +44,5 @@ Route::get('/gebruikers', fn() => Inertia::render('Gebruikers'))->name('gebruike
 
 // Nav Leveranciers
 Route::get('/leveranciers', fn() => Inertia::render('Leveranciers'))->name('leveranciers');
+
 
