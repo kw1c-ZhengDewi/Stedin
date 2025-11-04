@@ -1,9 +1,14 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import NavLink from '@/Components/NavLink.vue';
+import TheHeader from '@/Layouts/TheHeader.vue';
 </script>
 
 <template>
+
+<!-- Header -->
+<the-header>
+</the-header>
 
 <NavLink :href="route('index')" :active="$page.url === '/'">
   Index
@@ -27,4 +32,3 @@ import NavLink from '@/Components/NavLink.vue';
   Leveranciers
 </NavLink>
 
-</template>
