@@ -6,7 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    return Inertia::render('Index', [
+    return Inertia::render('index', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
