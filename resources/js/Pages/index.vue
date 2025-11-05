@@ -32,3 +32,4 @@ import TheHeader from '@/Layouts/TheHeader.vue';
   Leveranciers
 </NavLink>
 
+</template>
