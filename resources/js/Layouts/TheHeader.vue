@@ -6,8 +6,8 @@ import NavLink from '@/Components/NavLink.vue';
   <header class="bg-gray-100 border-b border-gray-300 py-3 text-center">
     <nav class="flex justify-center space-x-6">
         <!-- Navigatie, komt later in de header -->
-        <NavLink :href="route('index')" :active="$page.url === '/'">
-        Index
+        <NavLink :href="route('home')" :active="$page.url === '/'">
+        Home
         </NavLink>
 
         <NavLink :href="route('project')" :active="$page.url === '/project'">
