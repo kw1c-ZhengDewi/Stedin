@@ -1,39 +1,73 @@
+<script setup>
+import { ref } from 'vue';
+
+const mobileMenuOpen = ref(false);
+</script>
+
 <template>
-  <header class="header-container">
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/contact">Contact</router-link>
-    </nav>
+  <header class="bg-white shadow-md dark:bg-gray-900">
+    <!-- Desktop navigation -->
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="/" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+            MijnApp
+          </a>
+        </div>
+
+        <!-- Nav links (desktop) -->
+        <nav class="hidden md:flex space-x-6 items-center">
+          <slot />
+        </nav>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button
+            @click="mobileMenuOpen = !mobileMenuOpen"
+            class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 focus:outline-none"
+          >
+            <svg
+              v-if="!mobileMenuOpen"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg
+              v-else
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile navigation -->
+    <div
+      v-if="mobileMenuOpen"
+      class="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900"
+    >
+      <nav class="px-4 py-3 space-y-2 flex flex-col">
+        <slot />
+      </nav>
+    </div>
   </header>
 </template>
 
-<script>
-export default {
-  name: 'Header'
-}
-</script>
-
 <style scoped>
-.header-container {
-  background-color: #f8f9fa;
-  padding: 10px;
-  border-bottom: 1px solid #dee2e6;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
-
-nav a:hover {
-  color: #007bff;
+header {
+  transition: all 0.3s ease;
 }
 </style>
