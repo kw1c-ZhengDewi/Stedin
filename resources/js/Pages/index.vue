@@ -1,20 +1,22 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import NavLink from '@/Components/NavLink.vue';
 import TheHeader from '@/Layouts/TheHeader.vue';
+import NavLink from '@/Components/NavLink.vue';
 </script>
 
 <template>
+<AppLayout>
 
 <!-- Header -->
-<the-header>
-</the-header>
+<TheHeader>
+
+</TheHeader>
+
+<!-- Navigatie, komt later in de header -->
 
 <NavLink :href="route('index')" :active="$page.url === '/'">
   Index
 </NavLink>
-
-<!-- Pagina's Na het inloggen  -->
 
 <NavLink :href="route('project')" :active="$page.url === '/project'">
   Projecten
@@ -32,4 +34,6 @@ import TheHeader from '@/Layouts/TheHeader.vue';
   Leveranciers
 </NavLink>
 
+
+</AppLayout>
 </template>

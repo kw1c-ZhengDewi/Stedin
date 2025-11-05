@@ -1,15 +1,22 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import TheHeader from '@/Layouts/TheHeader.vue';
 import NavLink from '@/Components/NavLink.vue';
 </script>
 
 <template>
+<AppLayout>
+
+<!-- Header -->
+<TheHeader>
+
+</TheHeader>
+
+<!-- Pagina's Na het inloggen  -->
 
 <NavLink :href="route('index')" :active="$page.url === '/'">
   Index
 </NavLink>
-
-<!-- Pagina's Na het inloggen  -->
 
 <NavLink :href="route('project')" :active="$page.url === '/project'">
   Projecten
@@ -27,4 +34,5 @@ import NavLink from '@/Components/NavLink.vue';
   Leveranciers
 </NavLink>
 
+</AppLayout>
 </template>
