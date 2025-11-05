@@ -1,4 +1,5 @@
 <script setup>
+<<<<<<< HEAD
 import { ref } from 'vue';
 
 const mobileMenuOpen = ref(false);
@@ -69,5 +70,41 @@ const mobileMenuOpen = ref(false);
 <style scoped>
 header {
   transition: all 0.3s ease;
+=======
+import NavLink from '@/Components/NavLink.vue';
+</script>
+
+<template>
+  <header class="bg-gray-100 border-b border-gray-300 py-3 text-center">
+    <nav class="flex justify-center space-x-6">
+        <!-- Navigatie, komt later in de header -->
+        <NavLink :href="route('home')" :active="$page.url === '/'">
+        Home
+        </NavLink>
+
+        <NavLink :href="route('project')" :active="$page.url === '/project'">
+        Projecten
+        </NavLink>
+
+        <NavLink :href="route('product')" :active="$page.url === '/product'">
+        Producten
+        </NavLink>
+
+        <NavLink :href="route('gebruikers')" :active="$page.url === '/gebruikers'">
+        Gebruikers
+        </NavLink>
+
+        <NavLink :href="route('leveranciers')" :active="$page.url === '/leveranciers'">
+        Leveranciers
+        </NavLink>
+    </nav>
+</header>
+
+</template>
+
+<style scoped>
+nav a:hover {
+  color: #007bff;
+>>>>>>> 933badcebb6043965b091f0c7f3c370c41619bc4
 }
 </style>
