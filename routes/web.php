@@ -6,7 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    return Inertia::render('index', [
+    return Inertia::render('WelcomePage', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -31,7 +31,7 @@ Route::post('/register', [UserController::class, 'register'])->name('user.regist
 
 /* Vue Pages Stedin  */
 
-Route::get('/', fn() => Inertia::render('Index'))->name('index'); // Before Login and Register page: Front page
+Route::get('/home', fn() => Inertia::render('home'))->name('home');
 
 // Nav Project
 Route::get('/project', fn() => Inertia::render('Project'))->name('project');
