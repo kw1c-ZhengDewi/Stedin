@@ -1,38 +1,36 @@
-<template>
-  <header class="header-container">
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/contact">Contact</router-link>
-    </nav>
-  </header>
-</template>
-
-<script>
-export default {
-  name: 'Header'
-}
+<script setup>
+import NavLink from '@/Components/NavLink.vue';
 </script>
 
+<template>
+  <header class="bg-gray-100 border-b border-gray-300 py-3 text-center">
+    <nav class="flex justify-center space-x-6">
+        <!-- Navigatie, komt later in de header -->
+        <NavLink :href="route('index')" :active="$page.url === '/'">
+        Index
+        </NavLink>
+
+        <NavLink :href="route('project')" :active="$page.url === '/project'">
+        Projecten
+        </NavLink>
+
+        <NavLink :href="route('product')" :active="$page.url === '/product'">
+        Producten
+        </NavLink>
+
+        <NavLink :href="route('gebruikers')" :active="$page.url === '/gebruikers'">
+        Gebruikers
+        </NavLink>
+
+        <NavLink :href="route('leveranciers')" :active="$page.url === '/leveranciers'">
+        Leveranciers
+        </NavLink>
+    </nav>
+</header>
+
+</template>
+
 <style scoped>
-.header-container {
-  background-color: #f8f9fa;
-  padding: 10px;
-  border-bottom: 1px solid #dee2e6;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
-
 nav a:hover {
   color: #007bff;
 }
