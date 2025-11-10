@@ -4,7 +4,7 @@ import TheHeader from "@/Layouts/TheHeader.vue";
 </script>
 
 <template>
-    <AppLayout title="Project">
+    <AppLayout title="Winkelwagen">
         <TheHeader></TheHeader>
     </AppLayout>
 </template>

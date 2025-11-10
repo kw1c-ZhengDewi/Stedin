@@ -8,3 +8,6 @@ import TheHeader from "@/Layouts/TheHeader.vue";
         <TheHeader></TheHeader>
     </AppLayout>
 </template>
+
+<!-- Custom CSS -->
+<style scoped></style>
