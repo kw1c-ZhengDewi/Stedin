@@ -6,7 +6,7 @@ import NavLink from '@/Components/NavLink.vue';
   <header class="bg-gray-100 border-b border-gray-300 py-3 text-center">
     <nav class="flex justify-center space-x-6">
         <!-- Navigatie, komt later in de header -->
-        <NavLink :href="route('home')" :active="$page.url === '/'">
+        <!-- <NavLink :href="route('home')" :active="$page.url === '/'">
         Home
         </NavLink>
 
@@ -24,7 +24,7 @@ import NavLink from '@/Components/NavLink.vue';
 
         <NavLink :href="route('leveranciers')" :active="$page.url === '/leveranciers'">
         Leveranciers
-        </NavLink>
+        </NavLink> -->
     </nav>
 </header>
 

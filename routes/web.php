@@ -31,7 +31,7 @@ Route::post('/register', [UserController::class, 'register'])->name('user.regist
 
 /* Vue Pages Stedin  */
 
-Route::get('/home', fn() => Inertia::render('home'))->name('home');
+Route::get('/home', fn() => Inertia::render('Home'))->name('home');
 
 // Nav Project
 Route::get('/project', fn() => Inertia::render('Project'))->name('project');
