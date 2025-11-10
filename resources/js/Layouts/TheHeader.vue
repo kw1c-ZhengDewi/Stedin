@@ -1,5 +1,4 @@
 <script setup>
-import NavLink from "@/Components/NavLink.vue";
 import { ref } from 'vue';
 const mobileMenuOpen = ref(false);
 </script>
@@ -39,9 +38,5 @@ const mobileMenuOpen = ref(false);
 <style scoped>
 header {
   transition: all 0.3s ease;
-}
-  
-nav a:hover {
-  color: #007bff;
 }
 </style>
