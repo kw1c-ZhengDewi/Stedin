@@ -1,12 +1,4 @@
-<script setup>
-</script>
-
-<template>
-
-<!-- Pagina met eerste impressie -->
-<p>Welcome Pagina</p>
-
-</template>
+<script setup></script>
 
 <style scoped>
 body {

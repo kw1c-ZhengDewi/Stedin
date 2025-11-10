@@ -1,14 +1,10 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import TheHeader from '@/Layouts/TheHeader.vue';
+import AppLayout from "@/Layouts/AppLayout.vue";
+import TheHeader from "@/Layouts/TheHeader.vue";
 </script>
 
 <template>
-<AppLayout>
-
-<TheHeader>
-
-</TheHeader>
-
-</AppLayout>
+    <AppLayout title="Leveranciers">
+        <TheHeader></TheHeader>
+    </AppLayout>
 </template>

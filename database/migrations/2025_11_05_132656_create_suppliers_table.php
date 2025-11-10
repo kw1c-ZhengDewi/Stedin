@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->string('email')->unique()->lowercase();
+            $table->string('phone_country_code');
+            $table->string('phone_number');
+            $table->unique(['phone_country_code', 'phone_number']); // Prevents duplicate full numbers
             $table->timestamps();
         });
     }
