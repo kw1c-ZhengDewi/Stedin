@@ -7,8 +7,6 @@ const mobileMenuOpen = ref(false);
 <template>
     <header class="bg-gray-100 border-b border-gray-300 py-3 text-center">
         <nav class="flex justify-center space-x-6">
-            
-
             <NavLink :href="route('project')" :active="$page.url === '/project'"
                 >Projecten
             </NavLink>
@@ -34,10 +32,10 @@ const mobileMenuOpen = ref(false);
 
 <style scoped>
 header {
-  transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
-  
+
 nav a:hover {
-  color: #007bff;
+    color: #007bff;
 }
 </style>
