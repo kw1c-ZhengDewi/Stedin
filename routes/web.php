@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SupplierController;
 
 Route::get('/', function () {
     return Inertia::render('WelcomePage', [
@@ -41,4 +42,13 @@ Route::get('/gebruikers', fn() => Inertia::render('Gebruikers'))->name('gebruike
 // Nav Leveranciers
 Route::get('/leveranciers', fn() => Inertia::render('Leveranciers'))->name('leveranciers');
 
+// Nav Winkelwagen
+Route::get('/winkelwagen', fn() => Inertia::render('Winkelwagen'))->name('winkelwagen');
+
+
+// Supplier Management
+
+// Import or add new suppliers
+Route::post('/nieuw_leverancier', [SupplierController::class, 'store'])->name('leveranciers.store'); // Add
+Route::get('/nieuw_leverancier', [SupplierController::class, 'index'])->name('leveranciers.index'); // View
 

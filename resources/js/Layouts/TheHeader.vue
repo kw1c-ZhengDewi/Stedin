@@ -1,6 +1,6 @@
 <script setup>
 import NavLink from "@/Components/NavLink.vue";
-import { ref } from 'vue';
+import { ref } from "vue";
 const mobileMenuOpen = ref(false);
 </script>
 
@@ -25,6 +25,12 @@ const mobileMenuOpen = ref(false);
                 :href="route('leveranciers')"
                 :active="$page.url === '/leveranciers'"
                 >Leveranciers
+            </NavLink>
+
+            <NavLink
+                :href="route('winkelwagen')"
+                :active="$page.url === '/winkelwagen'"
+                >Winkelwagen
             </NavLink>
         </nav>
     </header>
