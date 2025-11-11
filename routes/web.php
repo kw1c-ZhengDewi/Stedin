@@ -29,7 +29,6 @@ Route::middleware([
 // Register Page
 Route::post('/register', [UserController::class, 'register'])->name('user.register');
 
-
 // Nav Project
 Route::get('/project', fn() => Inertia::render('Project'))->name('project');
 
@@ -39,7 +38,7 @@ Route::get('/product', fn() => Inertia::render('Product'))->name('product');
 // Nav Gebruikers
 Route::get('/gebruikers', fn() => Inertia::render('Gebruikers'))->name('gebruikers');
 
-// Nav Leveranciers
+// Nav Leveranciers (Laten liggen?)
 Route::get('/leveranciers', fn() => Inertia::render('Leveranciers'))->name('leveranciers');
 
 // Nav Winkelwagen
@@ -49,6 +48,12 @@ Route::get('/winkelwagen', fn() => Inertia::render('Winkelwagen'))->name('winkel
 // Supplier Management
 
 // Import or add new suppliers
-Route::post('/nieuw_leverancier', [SupplierController::class, 'store'])->name('leveranciers.store'); // Add
-Route::get('/nieuw_leverancier', [SupplierController::class, 'index'])->name('leveranciers.index'); // View
 
+// Create supplier (form submit)
+Route::post('/nieuw_leverancier', [SupplierController::class, 'store'])->name('leveranciers.store');
+
+// Supplier form page
+Route::get('/nieuw_leverancier', [SupplierController::class, 'index'])->name('leveranciers.index');
+
+// Show all the suppliers
+Route::get('/lijst_leveranciers', [SupplierController::class, 'display'])->name('leveranciers.display');

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use Inertia\Controller;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Inertia\Controller;
+use Inertia\Inertia;
 
 class SupplierController extends Controller
 {
@@ -20,14 +20,24 @@ class SupplierController extends Controller
 
         Supplier::create($validated);
 
-         // Return Inertia response (redirect back with success message)
-        return redirect()->back()->with('success', 'Nieuw leverancier aangemaakt');
+        return redirect()->route('leveranciers.display'); // Redirect to supplier list page
     }
 
-      public function index()
+    public function index()
     {
-         return Inertia::render('Management/Leveranciers/leveranciers', [
+        return Inertia::render('Management/Leveranciers/leveranciers', [
             'title' => 'Nieuw Leverancier toevoegen',
+        ]);
+
+    }
+
+    // Show supplier list page
+    public function display()
+    {
+        $leveranciers = Supplier::all();
+
+        return Inertia::render('Leveranciers', [
+            'leveranciers' => $leveranciers,
         ]);
     }
 }
