@@ -1,16 +1,13 @@
-<script setup></script>
+<script setup>
+import WelcomeHeader from '@/Layouts/WelcomeHeader.vue';
+import { ref } from "vue";
+const mobileMenuOpen = ref(false);
+</script>
 
 <template>
-  <div></div>
+  <welcome-header></welcome-header>
 </template>
 
-<style scoped>
-div {
-  width: 100vw;               /* full viewport width */
-  height: 100vh;              /* full viewport height */
-  background-image: url('https://www.lucversleijen.nl/wp-content/uploads/stedin_default.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-</style>
+
+
+
