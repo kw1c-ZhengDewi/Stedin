@@ -7,12 +7,7 @@ const mobileMenuOpen = ref(false);
 
 <template>
   <header class="relative bg-gray-100 border-b border-gray-300 py-3 px-6 flex items-center justify-between z-50">
-    <!-- Logo -->
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Stedin_RGB_klein_WT.jpg"
-      alt="Logo"
-      class="h-12 object-contain"
-    />
+  
 
     <!-- Desktop Menu -->
     <nav class="hidden md:flex space-x-4 items-center">
