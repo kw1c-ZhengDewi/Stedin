@@ -49,11 +49,21 @@ Route::get('/winkelwagen', fn() => Inertia::render('Winkelwagen'))->name('winkel
 
 // Import or add new suppliers
 
-// Create supplier (form submit)
-Route::post('/nieuw_leverancier', [SupplierController::class, 'store'])->name('leveranciers.store');
+// Maak een nieuw leverancier Pagina
+Route::get('/leveranciers', [SupplierController::class, 'index'])->name('leveranciers.index');
 
-// Supplier form page
-Route::get('/nieuw_leverancier', [SupplierController::class, 'index'])->name('leveranciers.index');
+// Gegevens ontvangen vanaf nieuw_leverancier pagina
+Route::post('/leveranciers', [SupplierController::class, 'store'])->name('leveranciers.store');
 
-// Show all the suppliers
+// Toont alle leveranciers
 Route::get('/lijst_leveranciers', [SupplierController::class, 'display'])->name('leveranciers.display');
+
+// Toon leverancier bewerkingsformulier
+Route::get('/leveranciers/{supplier}/edit', [SupplierController::class, 'edit'])->name('leveranciers.edit');
+
+// Verwerk het indienen van een bewerkingsformulier
+Route::put('/leveranciers/{supplier}', [SupplierController::class, 'update'])->name('leveranciers.update');
+
+// Verwijder leverancier route
+Route::delete('/leveranciers/{supplier}', [SupplierController::class, 'destroy'])->name('leveranciers.destroy');
+
