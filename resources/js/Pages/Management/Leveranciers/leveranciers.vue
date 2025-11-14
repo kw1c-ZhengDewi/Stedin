@@ -3,13 +3,13 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
 import FormSection from "@/Components/FormSection.vue";
 import { useForm } from "@inertiajs/vue3";
+import { route } from 'ziggy-js';
 
-// Form gegevens
 const form = useForm({
     name: "",
     email: "",
     phone_country_code: "",
-    phone_number: "",
+    phone_number: ""
 });
 
 function submitLeverancier() {
@@ -42,7 +42,7 @@ function submitLeverancier() {
                 <input type="email" placeholder="Email" v-model="form.email" class="col-span-6" />
 
                 <select v-model="form.phone_country_code" class="col-span-6 border rounded p-2">
-                    <option value="">Selecteer landcode</option>
+                    <option disabled value="">Selecteer landcode</option>
                     <option value="+31">Nederland (+31)</option>
                     <option value="+32">België (+32)</option>
                     <option value="+49">Duitsland (+49)</option>
