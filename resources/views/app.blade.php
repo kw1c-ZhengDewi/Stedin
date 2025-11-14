@@ -7,7 +7,7 @@
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
         {{-- Favicon --}}
-        <link rel="icon" type="image/ico" href="#">
+        <link rel="icon" type="image/ico" href="">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
