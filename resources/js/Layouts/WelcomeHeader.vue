@@ -6,7 +6,6 @@ const mobileMenuOpen = ref(false);
 </script>
 
 <template>
-<<<<<<< HEAD
   <div class="min-h-screen flex flex-col font-open-sans">
 
     <!-- HEADER -->
@@ -18,74 +17,6 @@ const mobileMenuOpen = ref(false);
           :href="route('login')"
           :active="$page.url === '/login'"
           class="big-button"
-=======
-  <!-- Header -->
-  <header class="relative bg-gradient-to-r from-amber-50 via-white to-amber-50 border-b-2 border-amber-200 py-4 px-6 flex items-center justify-between z-50 shadow-lg backdrop-blur-sm">
-  
-    <!-- Logo of app name -->
-    <div class="text-xl font-bold">
-      MijnApp
-    </div>
-
-    <!-- Desktop Menu -->
-    <nav class="hidden md:flex space-x-4 items-center ml-auto">
-      <NavLink
-        :href="route('login')"
-        :active="$page.url === '/login'"
-        class="big-button"
-      >
-        Inloggen
-      </NavLink>
-
-      <NavLink
-        :href="route('register')"
-        :active="$page.url === '/register'"
-        class="big-button"
-      >
-        Registreren
-      </NavLink>
-    </nav>
-
-    <!-- Mobile Menu Button -->
-    <button
-      class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ml-auto"
-      @click="mobileMenuOpen = !mobileMenuOpen"
-    >
-      <svg
-        v-if="!mobileMenuOpen"
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-      <svg
-        v-else
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <!-- Mobile Menu -->
-    <transition name="fade">
-      <div
-        v-if="mobileMenuOpen"
-        class="absolute top-full right-0 w-full bg-gradient-to-b from-amber-50 to-white border-t-2 border-amber-200 md:hidden flex flex-col items-end space-y-3 py-6 pr-6 shadow-2xl z-40 backdrop-blur-sm"
-      >
-        <NavLink
-          :href="route('login')"
-          :active="$page.url === '/login'"
-          class="big-button w-3/4 text-right"
->>>>>>> c927c2876d57c96e72c0373e2b54509380aa4e33
         >
           Inloggen
         </NavLink>
@@ -93,11 +24,7 @@ const mobileMenuOpen = ref(false);
         <NavLink
           :href="route('register')"
           :active="$page.url === '/register'"
-<<<<<<< HEAD
           class="big-button"
-=======
-          class="big-button w-3/4 text-right"
->>>>>>> c927c2876d57c96e72c0373e2b54509380aa4e33
         >
           Registreren
         </NavLink>
