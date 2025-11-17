@@ -5,10 +5,5 @@ const mobileMenuOpen = ref(false);
 </script>
 
 <template>
-  
   <welcome-header></welcome-header>
 </template>
-
-
-
-
