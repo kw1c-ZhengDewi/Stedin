@@ -38,7 +38,6 @@ const deleteSupplier = (id) => {
     <AppLayout title="Leveranciers">
         <TheHeader></TheHeader>
 
-
         <!-- Database Leveranciers: Display -->
         <div class="m-10">
             <h1 class="text-2xl font-bold mb-4">Leverancierslijst</h1>

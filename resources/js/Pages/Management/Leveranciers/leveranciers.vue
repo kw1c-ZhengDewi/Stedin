@@ -75,15 +75,6 @@ function submitLeverancier() {
                     <option v-for="(data, country) in countryData" :key="country" :value="country">
                         {{ country }} ({{ data.code }})
                     </option>
-                    <!-- <option value="+31">Nederland (+31)</option>
-                    <option value="+32">België (+32)</option>
-                    <option value="+49">Duitsland (+49)</option>
-                    <option value="+33">Frankrijk (+33)</option>
-                    <option value="+44">Verenigd Koninkrijk (+44)</option>
-                    <option value="+34">Spanje (+34)</option>
-                    <option value="+39">Italië (+39)</option>
-                    <option value="+1">Verenigde Staten (+1)</option>
-                    <option value="+86">China (+86)</option> -->
                 </select>
 
                 <input type="text" placeholder="Telefoonnummer" v-model="form.phone_number" class="col-span-6"
