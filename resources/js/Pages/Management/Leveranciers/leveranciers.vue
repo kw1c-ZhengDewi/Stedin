@@ -3,7 +3,6 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
 import FormSection from "@/Components/FormSection.vue";
 import { useForm } from "@inertiajs/vue3";
-import { route } from 'ziggy-js';
 
 const form = useForm({
     name: "",

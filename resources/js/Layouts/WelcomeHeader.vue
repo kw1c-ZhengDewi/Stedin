@@ -111,39 +111,9 @@ const mobileMenuOpen = ref(false);
           </NavLink>
         </div>
       </div>
-<<<<<<< HEAD
     </main>
 
   </div>
-=======
-    </transition>
-  </header>
-
-  <!-- Welkomstsectie -->
-  <main class="flex flex-col items-center justify-center text-center mt-32 px-4">
-    <div class="welcome-box backdrop-blur-md bg-white/40 shadow-xl border border-white/30 rounded-2xl p-10 max-w-2xl animate-fade-in">
-      <h1 class="text-5xl md:text-6xl font-extrabold text-amber-700 mb-4 drop-shadow-lg">
-        Welkom bij Stedin
-      </h1>
-      <p class="text-xl md:text-2xl text-gray-700">
-        <a 
-          :href="route('login')" 
-          class="font-bold text-amber-700 no-underline hover:no-underline"
-        >
-          Log in
-        </a> 
-        of 
-        <a 
-          :href="route('register')" 
-          class="font-bold text-amber-700 no-underline hover:no-underline"
-        >
-          maak een account
-        </a> 
-        om door te gaan naar de site.
-      </p>
-    </div>
-  </main>
->>>>>>> c927c2876d57c96e72c0373e2b54509380aa4e33
 </template>
 
 <style scoped>
@@ -152,28 +122,7 @@ header {
   position: relative;
 }
 
-<<<<<<< HEAD
 /* Fade animatie */
-=======
-/* Subtiele glans animatie */
-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  animation: shine 3s infinite;
-}
-
-@keyframes shine {
-  0% { left: -100%; }
-  50%, 100% { left: 100%; }
-}
-
-/* Fade animatie voor mobiel menu */
->>>>>>> c927c2876d57c96e72c0373e2b54509380aa4e33
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -197,49 +146,8 @@ header::before {
 <style>
 /* Algemene styling */
 body {
-<<<<<<< HEAD
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-=======
-  background: linear-gradient(135deg, #ffd700 0%, #ffde00 50%, #ffa500 100%);
-  min-height: 100vh;
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  position: relative;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255, 165, 0, 0.15) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 60px,
-    rgba(255, 255, 255, 0.03) 60px,
-    rgba(255, 255, 255, 0.03) 120px
-  );
-  pointer-events: none;
-  z-index: 0;
->>>>>>> c927c2876d57c96e72c0373e2b54509380aa4e33
 }
 
 .big-button {
