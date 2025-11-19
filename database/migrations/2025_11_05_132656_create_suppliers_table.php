@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('email')->unique()->lowercase();
+            $table->text('supplier_description')->nullable();
             $table->string('phone_country_code', 5)->nullable();
             $table->string('phone_number');
             $table->unique(['phone_country_code', 'phone_number']); // Prevents duplicate full numbers
