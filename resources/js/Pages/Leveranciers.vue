@@ -39,36 +39,30 @@ const deleteSupplier = (id) => {
             <NavLink 
                 :href="route('leveranciers.store')"
                 class="flex items-center gap-2 bg-[#ffd100] text-[#4d4d4d] font-semibold px-5 py-2 rounded-lg shadow hover:brightness-90 transition"
-                :active="$page.url === './Management/Leveranciers/leveranciers.vue'">
+            >
                 <span class="text-xl font-bold">+</span> Leverancier toevoegen
             </NavLink>
         </div>
 
-            <!-- Searchbar -->
-            
-
-            <table class="min-w-full border border-gray-300 rounded">
-                <thead class="bg-gray-100">
         <div class="overflow-x-auto bg-white shadow rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-[#ffd100]">
                     <tr>
                         <th class="px-6 py-3 text-left text-sm font-semibold text-[#4d4d4d]">Naam</th>
                         <th class="px-6 py-3 text-left text-sm font-semibold text-[#4d4d4d]">Email</th>
+                        <th class="px-6 py-3 text-left text-sm font-semibold text-[#4d4d4d]">Omschrijving</th>
                         <th class="px-6 py-3 text-left text-sm font-semibold text-[#4d4d4d]">Telefoon</th>
                         <th class="px-6 py-3 text-center text-sm font-semibold text-[#4d4d4d]">Acties</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                    <tr 
-                        v-for="leverancier in props.leveranciers" 
-                        :key="leverancier.id"
-                        class="hover:bg-gray-50 transition">
+                    <tr v-for="leverancier in props.leveranciers" :key="leverancier.id" class="hover:bg-gray-50 transition">
                         <td class="px-6 py-4">{{ leverancier.name }}</td>
                         <td class="px-6 py-4">{{ leverancier.email }}</td>
+                        <td class="px-6 py-4">{{ leverancier.supplier_description }}</td>
                         <td class="px-6 py-4">{{ leverancier.phone_country_code }} {{ leverancier.phone_number }}</td>
                         <td class="px-6 py-4 flex justify-center gap-3">
-                            <!-- Edit -->
+                            <!-- Edit knop -->
                             <button 
                                 @click="editSupplier(leverancier.id)" 
                                 class="w-10 h-10 flex items-center justify-center rounded-full bg-[#ffd100] hover:brightness-90 transition"
@@ -78,7 +72,7 @@ const deleteSupplier = (id) => {
                                 </svg>
                             </button>
 
-                            <!-- Delete -->
+                            <!-- Delete knop -->
                             <button 
                                 @click="deleteSupplier(leverancier.id)" 
                                 class="w-10 h-10 flex items-center justify-center rounded-full bg-red-500 hover:bg-red-600 transition"
@@ -90,7 +84,7 @@ const deleteSupplier = (id) => {
                         </td>
                     </tr>
                     <tr v-if="props.leveranciers.length === 0">
-                        <td colspan="4" class="px-6 py-4 text-center text-gray-500">Geen leveranciers gevonden.</td>
+                        <td colspan="5" class="px-6 py-4 text-center text-gray-500">Geen leveranciers gevonden.</td>
                     </tr>
                 </tbody>
             </table>

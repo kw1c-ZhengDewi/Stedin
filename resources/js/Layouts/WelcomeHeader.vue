@@ -8,10 +8,13 @@ const mobileMenuOpen = ref(false);
 <template>
   <div class="min-h-screen flex flex-col font-open-sans">
 
-    <!-- HEADER -->
-    <header class="relative bg-gray-100 border-b border-gray-300 py-4 px-6 flex justify-end items-center z-50">
+    <!-- HEADER (nu weer wit) -->
+    <header
+      class="sticky top-0 border-b border-gray-300 py-4 px-6 flex justify-end items-center z-50"
+      style="background-color: white;"
+    >
 
-      <!-- Desktop Menu (rechts) -->
+      <!-- Desktop Menu -->
       <nav class="hidden md:flex space-x-4 items-center">
         <NavLink
           :href="route('login')"
@@ -32,7 +35,7 @@ const mobileMenuOpen = ref(false);
 
       <!-- Mobile Menu Button -->
       <button
-        class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-[#4d4d4d]"
         @click="mobileMenuOpen = !mobileMenuOpen"
       >
         <svg
@@ -70,6 +73,7 @@ const mobileMenuOpen = ref(false);
             :href="route('login')"
             :active="$page.url === '/login'"
             class="big-button w-3/4 text-center"
+            @click="mobileMenuOpen = false"
           >
             Inloggen
           </NavLink>
@@ -78,6 +82,7 @@ const mobileMenuOpen = ref(false);
             :href="route('register')"
             :active="$page.url === '/register'"
             class="big-button w-3/4 text-center"
+            @click="mobileMenuOpen = false"
           >
             Registreren
           </NavLink>
@@ -85,15 +90,20 @@ const mobileMenuOpen = ref(false);
       </transition>
     </header>
 
-    <!-- WELKOM BERICHT (CENTRAAL) -->
-    <main class="flex-grow flex items-center justify-center px-6" style="background-color: #ffd100;">
-      <div class="bg-white shadow-2xl rounded-3xl p-16 max-w-lg w-full text-center">
+    <!-- WELCOME AREA -->
+    <main
+      class="flex-grow flex items-center justify-center px-6"
+      style="background-color: #ffd100;"
+    >
+      <div class="bg-white shadow-2xl rounded-3xl p-16 max-w-lg w-full text-center animate-fade-in">
         <h1 class="text-5xl font-extrabold mb-6" style="color: #4d4d4d;">
           Welkom bij het Stedin Portal
         </h1>
+
         <p class="text-lg mb-8" style="color: #4d4d4d;">
           Fijn dat je er bent! Log in of registreer om toegang te krijgen tot je account.
         </p>
+
         <div class="flex justify-center gap-4">
           <NavLink
             :href="route('login')"
@@ -102,6 +112,7 @@ const mobileMenuOpen = ref(false);
           >
             Inloggen
           </NavLink>
+
           <NavLink
             :href="route('register')"
             :active="$page.url === '/register'"
@@ -117,12 +128,7 @@ const mobileMenuOpen = ref(false);
 </template>
 
 <style scoped>
-header {
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-/* Fade animatie */
+/* Fade animation */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -132,19 +138,17 @@ header {
   opacity: 0;
 }
 
-/* Welkomst animatie */
+/* Welcome card animation */
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 .animate-fade-in {
   animation: fade-in 1.2s ease forwards;
 }
 </style>
 
 <style>
-/* Algemene styling */
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
