@@ -19,11 +19,19 @@ class SupplierController extends Controller
                 'max:100',
                 Rule::unique('suppliers', 'name'),
             ],
+
             'email' => [
                 'required',
                 'email',
                 'max:100',
                 Rule::unique('suppliers', 'email'),
+            ],
+
+              'supplier_description' => [
+                'nullable',
+                'string',
+                'max:100',
+                Rule::unique('suppliers', 'supplier_description'),
             ],
 
             // Regex: behalve cijfers en geen letters of andere karakters toegestaan.
@@ -70,11 +78,19 @@ class SupplierController extends Controller
                 'max:100',
                 Rule::unique('suppliers', 'name')->ignore($supplier->id),
             ],
+
             'email' => [
                 'required',
                 'email',
                 'max:100',
                 Rule::unique('suppliers', 'email')->ignore($supplier->id),
+            ],
+
+            'supplier_description' => [
+                'nullable',
+                'string',
+                'max:100',
+                Rule::unique('suppliers', 'supplier_description')->ignore($supplier->id),
             ],
 
             'phone_country_code' => ['nullable', 'string', 'max:5', 'regex:/^\+?[0-9]+$/'],

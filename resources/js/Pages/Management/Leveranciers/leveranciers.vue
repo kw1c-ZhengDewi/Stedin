@@ -23,6 +23,7 @@ const selectedCountry = ref("Netherlands");
 const form = useForm({
     name: "",
     email: "",
+    supplier_description: "",
     phone_country_code: countryData[selectedCountry.value].code,
     phone_number: ""
 });
@@ -66,6 +67,10 @@ function submitLeverancier() {
                 <p v-if="form.errors.email" class="text-red-500 text-sm mt-1 whitespace-nowrap">
                     {{ form.errors.email }}
                 </p>
+
+                <!-- Leverancier Omschrijving -->
+                <input type="text" placeholder="Omschrijving" v-model="form.leverancier_description"
+                    class="col-span-6" />
 
                 <select v-model="selectedCountry" class="col-span-6 border rounded p-2">
                     <option disabled value="">Selecteer landcode</option>
