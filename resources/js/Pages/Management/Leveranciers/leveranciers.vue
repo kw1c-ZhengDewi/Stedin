@@ -23,6 +23,7 @@ const selectedCountry = ref("Netherlands");
 const form = useForm({
     name: "",
     email: "",
+    supplier_description: "",
     phone_country_code: countryData[selectedCountry.value].code,
     phone_number: ""
 });
@@ -49,97 +50,44 @@ function submitLeverancier() {
 
 <template>
     <AppLayout title="Leveranciers">
-        <TheHeader />
+        <TheHeader></TheHeader>
 
-        <div class="m-10">
-            <FormSection @submitted="submitLeverancier">
-                
-                <!-- Titel -->
-                <template #title>Nieuw Leverancier Toevoegen</template>
+        <!-- Form Wrapper -->
+        <FormSection @submitted="submitLeverancier" class="m-10">
+            <template #suppliers>Nieuw Leverancier toevoegen</template>
+            <template #description>Vul hier de gegevens van de leverancier in.</template>
 
-                <!-- Beschrijving -->
-                <template #description>
-                    Vul hieronder de gegevens van de leverancier in.
-                </template>
+            <template #form>
+                <input type="text" placeholder="Naam" v-model="form.name" class="col-span-6" />
+                <p v-if="form.errors.name" class="text-red-500 text-sm mt-1 whitespace-nowrap">
+                    {{ form.errors.name }}
+                </p>
 
-                <!-- FORM -->
-                <template #form>
-                    <!-- Naam -->
-                    <div class="col-span-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Naam</label>
-                        <input
-                            type="text"
-                            v-model="form.name"
-                            class="w-full border rounded-lg p-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                            placeholder="Leverancier naam"
-                        />
-                        <p v-if="form.errors.name" class="text-red-500 text-sm mt-1">
-                            {{ form.errors.name }}
-                        </p>
-                    </div>
+                <input type="email" placeholder="Email" v-model="form.email" class="col-span-6" />
+                <p v-if="form.errors.email" class="text-red-500 text-sm mt-1 whitespace-nowrap">
+                    {{ form.errors.email }}
+                </p>
 
-                    <!-- Email -->
-                    <div class="col-span-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
-                        <input
-                            type="email"
-                            v-model="form.email"
-                            class="w-full border rounded-lg p-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                            placeholder="leverancier@email.com"
-                        />
-                        <p v-if="form.errors.email" class="text-red-500 text-sm mt-1">
-                            {{ form.errors.email }}
-                        </p>
-                    </div>
+                <!-- Leverancier Omschrijving -->
+                <input type="text" placeholder="Omschrijving" v-model="form.leverancier_description"
+                    class="col-span-6" />
 
-                    <!-- Telefoonnummer -->
-                    <div class="col-span-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Telefoonnummer</label>
+                <select v-model="selectedCountry" class="col-span-6 border rounded p-2">
+                    <option disabled value="">Selecteer landcode</option>
+                    <option v-for="(data, country) in countryData" :key="country" :value="country">
+                        {{ country }} ({{ data.code }})
+                    </option>
+                </select>
 
-                        <div class="grid grid-cols-4 gap-3">
-                            <!-- Landcode + landnaam -->
-                            <select
-                                v-model="selectedCountry"
-                                class="col-span-1 border rounded-lg p-3 shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500"
-                            >
-                                <option disabled value="">Selecteer land</option>
-                                <option
-                                    v-for="(data, country) in countryData"
-                                    :key="country"
-                                    :value="country"
-                                >
-                                    {{ country }} ({{ data.code }})
-                                </option>
-                            </select>
+                <input type="text" placeholder="Telefoonnummer" v-model="form.phone_number" class="col-span-6"
+                    :maxlength="countryData[selectedCountry].maxLength" />
+            </template>
 
-                            <!-- Telefoonnummer -->
-                            <input
-                                type="text"
-                                v-model="form.phone_number"
-                                :maxlength="countryData[selectedCountry].maxLength"
-                                class="col-span-3 border rounded-lg p-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                                placeholder="Telefoonnummer"
-                            />
-                        </div>
-
-                        <p v-if="form.errors.phone_number" class="text-red-500 text-sm mt-1">
-                            {{ form.errors.phone_number }}
-                        </p>
-                    </div>
-                </template>
-
-                <!-- Actieknoppen -->
-                <template #actions>
-                    <button
-                        type="submit"
-                        class="bg-indigo-600 text-white px-5 py-3 rounded-lg shadow hover:bg-indigo-700 transition"
-                        :disabled="form.processing"
-                    >
-                        Toevoegen
-                    </button>
-                </template>
-            </FormSection>
-        </div>
+            <!-- Submit -->
+            <template #actions>
+                <button type="submit" class="btn btn-primary">Toevoegen</button>
+            </template>
+        </FormSection>
     </AppLayout>
 </template>
 
