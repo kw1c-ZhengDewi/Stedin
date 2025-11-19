@@ -44,6 +44,11 @@ const deleteSupplier = (id) => {
             </NavLink>
         </div>
 
+            <!-- Searchbar -->
+            
+
+            <table class="min-w-full border border-gray-300 rounded">
+                <thead class="bg-gray-100">
         <div class="overflow-x-auto bg-white shadow rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-[#ffd100]">
