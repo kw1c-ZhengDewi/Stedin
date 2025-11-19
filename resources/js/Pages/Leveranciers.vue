@@ -48,6 +48,8 @@ const deleteSupplier = (id) => {
                 :active="$page.url === './Management/Leveranciers/leveranciers.vue'">Leverancier toevoegen
             </NavLink>
 
+            <!-- Searchbar -->
+            
 
             <table class="min-w-full border border-gray-300 rounded">
                 <thead class="bg-gray-100">
