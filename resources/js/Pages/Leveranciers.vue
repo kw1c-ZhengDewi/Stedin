@@ -38,7 +38,6 @@ const deleteSupplier = (id) => {
     <AppLayout title="Leveranciers">
         <TheHeader></TheHeader>
 
-
         <!-- Database Leveranciers: Display -->
         <div class="m-10">
             <h1 class="text-2xl font-bold mb-4">Leverancierslijst</h1>
@@ -55,8 +54,8 @@ const deleteSupplier = (id) => {
                     <tr>
                         <th class="p-2 border">Naam</th>
                         <th class="p-2 border">Email</th>
-                        <th class="p-2 border">Landcode</th>
-                        <th class="p-2 border">Telefoon</th>
+                        <th class="p-2 border">Omschrijving</th>
+                        <th class="p-2 border">Telefoonnummer</th>
                         <th class="p-2 border">Acties</th>
                     </tr>
                 </thead>
@@ -64,8 +63,8 @@ const deleteSupplier = (id) => {
                     <tr v-for="leverancier in props.leveranciers" :key="leverancier.id" class="hover:bg-gray-50">
                         <td class="p-2 border">{{ leverancier.name }}</td>
                         <td class="p-2 border">{{ leverancier.email }}</td>
-                        <td class="p-2 border">{{ leverancier.phone_country_code }}</td>
-                        <td class="p-2 border">{{ leverancier.phone_number }}</td>
+                        <td class="p-2 border">{{ leverancier.supplier_description }}</td>
+                        <td class="p-2 border">{{ leverancier.phone_country_code }} {{ leverancier.phone_number }}</td>
                         <!-- Bewerken of Verwijderen -->
                         <td class="p-2 border justify-center flex gap-5">
 
