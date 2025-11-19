@@ -5,7 +5,7 @@ import TheHeader from "@/Layouts/TheHeader.vue";
 import FormSection from "@/Components/FormSection.vue";
 import { useForm } from "@inertiajs/vue3";
 
-// All the available phone numbers
+// Alle beschikbare landen en codes
 const countryData = {
     "Netherlands": { code: "+31", maxLength: 9 },
     "Belgium": { code: "+32", maxLength: 9 },
@@ -17,7 +17,7 @@ const countryData = {
     "China": { code: "+86", maxLength: 11 },
 };
 
-// Default Country Selected
+// Standaard geselecteerd land
 const selectedCountry = ref("Netherlands");
 
 const form = useForm({
@@ -27,22 +27,20 @@ const form = useForm({
     phone_number: ""
 });
 
-// Changes the limit digits based on the country code
+// Update telefoon landcode als het geselecteerde land verandert
 watch(selectedCountry, (newCountry) => {
     form.phone_country_code = countryData[newCountry].code;
-    // Optional: reset phone number if you want
     form.phone_number = "";
 });
 
+// Formulier versturen
 function submitLeverancier() {
-    // Inertia automatically handles validation errors and CSRF
     form.post(route("leveranciers.store"), {
         onSuccess: () => {
-            alert("Nieuw leverancier aangemaakt!");
+            alert("Nieuwe leverancier aangemaakt!");
             form.reset();
         },
         onError: (errors) => {
-            alert("Er is een foutmelding");
             console.log("Form errors:", errors);
         },
     });
@@ -51,61 +49,103 @@ function submitLeverancier() {
 
 <template>
     <AppLayout title="Leveranciers">
-        <TheHeader></TheHeader>
+        <TheHeader />
 
-        <!-- Form Wrapper -->
-        <FormSection @submitted="submitLeverancier" class="m-10">
-            <template #suppliers>Nieuw Leverancier toevoegen</template>
-            <template #description>Vul hier de gegevens van de leverancier in.</template>
+        <div class="m-10">
+            <FormSection @submitted="submitLeverancier">
+                
+                <!-- Titel -->
+                <template #title>Nieuw Leverancier Toevoegen</template>
 
-            <template #form>
-                <input type="text" placeholder="Naam" v-model="form.name" class="col-span-6" />
-                <p v-if="form.errors.name" class="text-red-500 text-sm mt-1 whitespace-nowrap">
-                    {{ form.errors.name }}
-                </p>
+                <!-- Beschrijving -->
+                <template #description>
+                    Vul hieronder de gegevens van de leverancier in.
+                </template>
 
-                <input type="email" placeholder="Email" v-model="form.email" class="col-span-6" />
-                <p v-if="form.errors.email" class="text-red-500 text-sm mt-1 whitespace-nowrap">
-                    {{ form.errors.email }}
-                </p>
+                <!-- FORM -->
+                <template #form>
+                    <!-- Naam -->
+                    <div class="col-span-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Naam</label>
+                        <input
+                            type="text"
+                            v-model="form.name"
+                            class="w-full border rounded-lg p-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Leverancier naam"
+                        />
+                        <p v-if="form.errors.name" class="text-red-500 text-sm mt-1">
+                            {{ form.errors.name }}
+                        </p>
+                    </div>
 
-                <select v-model="selectedCountry" class="col-span-6 border rounded p-2">
-                    <option disabled value="">Selecteer landcode</option>
-                    <option v-for="(data, country) in countryData" :key="country" :value="country">
-                        {{ country }} ({{ data.code }})
-                    </option>
-                    <!-- <option value="+31">Nederland (+31)</option>
-                    <option value="+32">België (+32)</option>
-                    <option value="+49">Duitsland (+49)</option>
-                    <option value="+33">Frankrijk (+33)</option>
-                    <option value="+44">Verenigd Koninkrijk (+44)</option>
-                    <option value="+34">Spanje (+34)</option>
-                    <option value="+39">Italië (+39)</option>
-                    <option value="+1">Verenigde Staten (+1)</option>
-                    <option value="+86">China (+86)</option> -->
-                </select>
+                    <!-- Email -->
+                    <div class="col-span-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+                        <input
+                            type="email"
+                            v-model="form.email"
+                            class="w-full border rounded-lg p-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="leverancier@email.com"
+                        />
+                        <p v-if="form.errors.email" class="text-red-500 text-sm mt-1">
+                            {{ form.errors.email }}
+                        </p>
+                    </div>
 
-                <input type="text" placeholder="Telefoonnummer" v-model="form.phone_number" class="col-span-6"
-                    :maxlength="countryData[selectedCountry].maxLength" />
-            </template>
+                    <!-- Telefoonnummer -->
+                    <div class="col-span-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Telefoonnummer</label>
 
-            <!-- Submit -->
-            <template #actions>
-                <button type="submit" class="btn btn-primary">Toevoegen</button>
-            </template>
-        </FormSection>
+                        <div class="grid grid-cols-4 gap-3">
+                            <!-- Landcode + landnaam -->
+                            <select
+                                v-model="selectedCountry"
+                                class="col-span-1 border rounded-lg p-3 shadow-sm bg-white focus:ring-indigo-500 focus:border-indigo-500"
+                            >
+                                <option disabled value="">Selecteer land</option>
+                                <option
+                                    v-for="(data, country) in countryData"
+                                    :key="country"
+                                    :value="country"
+                                >
+                                    {{ country }} ({{ data.code }})
+                                </option>
+                            </select>
+
+                            <!-- Telefoonnummer -->
+                            <input
+                                type="text"
+                                v-model="form.phone_number"
+                                :maxlength="countryData[selectedCountry].maxLength"
+                                class="col-span-3 border rounded-lg p-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                placeholder="Telefoonnummer"
+                            />
+                        </div>
+
+                        <p v-if="form.errors.phone_number" class="text-red-500 text-sm mt-1">
+                            {{ form.errors.phone_number }}
+                        </p>
+                    </div>
+                </template>
+
+                <!-- Actieknoppen -->
+                <template #actions>
+                    <button
+                        type="submit"
+                        class="bg-indigo-600 text-white px-5 py-3 rounded-lg shadow hover:bg-indigo-700 transition"
+                        :disabled="form.processing"
+                    >
+                        Toevoegen
+                    </button>
+                </template>
+            </FormSection>
+        </div>
     </AppLayout>
 </template>
 
-<!-- Custom CSS -->
 <style scoped>
-button:hover {
-    color: #007bff;
-}
-
-h1 {
-    font-size: 32px;
-    white-space: nowrap;
-    font-weight: bold;
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 </style>
