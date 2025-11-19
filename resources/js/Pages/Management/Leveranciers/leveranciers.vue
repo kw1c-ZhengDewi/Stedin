@@ -4,9 +4,8 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
 import FormSection from "@/Components/FormSection.vue";
 import { useForm } from "@inertiajs/vue3";
-import { route } from 'ziggy-js';
 
-// All the available phone numbers
+// Alle beschikbare landen en codes
 const countryData = {
     "Netherlands": { code: "+31", maxLength: 9 },
     "Belgium": { code: "+32", maxLength: 9 },
@@ -18,7 +17,7 @@ const countryData = {
     "China": { code: "+86", maxLength: 11 },
 };
 
-// Default Country Selected
+// Standaard geselecteerd land
 const selectedCountry = ref("Netherlands");
 
 const form = useForm({
@@ -28,22 +27,20 @@ const form = useForm({
     phone_number: ""
 });
 
-// Changes the limit digits based on the country code
+// Update telefoon landcode als het geselecteerde land verandert
 watch(selectedCountry, (newCountry) => {
     form.phone_country_code = countryData[newCountry].code;
-    // Optional: reset phone number if you want
     form.phone_number = "";
 });
 
+// Formulier versturen
 function submitLeverancier() {
-    // Inertia automatically handles validation errors and CSRF
     form.post(route("leveranciers.store"), {
         onSuccess: () => {
-            alert("Nieuw leverancier aangemaakt!");
+            alert("Nieuwe leverancier aangemaakt!");
             form.reset();
         },
         onError: (errors) => {
-            alert("Er is een foutmelding");
             console.log("Form errors:", errors);
         },
     });
@@ -89,15 +86,9 @@ function submitLeverancier() {
     </AppLayout>
 </template>
 
-<!-- Custom CSS -->
 <style scoped>
-button:hover {
-    color: #007bff;
-}
-
-h1 {
-    font-size: 32px;
-    white-space: nowrap;
-    font-weight: bold;
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 </style>
