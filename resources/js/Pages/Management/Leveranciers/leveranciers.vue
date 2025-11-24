@@ -69,8 +69,7 @@ function submitLeverancier() {
                 </p>
 
                 <!-- Leverancier Omschrijving -->
-                <input type="text" placeholder="Omschrijving" v-model="form.leverancier_description"
-                    class="col-span-6" />
+                <input type="text" placeholder="Omschrijving" v-model="form.supplier_description" class="col-span-6" />
 
                 <select v-model="selectedCountry" class="col-span-6 border rounded p-2">
                     <option disabled value="">Selecteer landcode</option>
