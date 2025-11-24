@@ -4,7 +4,7 @@ import TheHeader from "@/Layouts/TheHeader.vue";
 import NavLink from "@/Components/NavLink.vue";
 import { router } from '@inertiajs/vue3';
 
-// Props van Laravel controller
+// Props from Laravel controller
 const props = defineProps({
     leveranciers: {
         type: Array,
@@ -36,7 +36,7 @@ const deleteSupplier = (id) => {
     <div class="p-8 max-w-7xl mx-auto font-sans text-[#4d4d4d]">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-3xl font-bold">Leverancierslijst</h1>
-            <NavLink 
+            <NavLink
                 :href="route('leveranciers.store')"
                 class="flex items-center gap-2 bg-[#ffd100] text-[#4d4d4d] font-semibold px-5 py-2 rounded-lg shadow hover:brightness-90 transition"
                 :active="$page.url === './Management/Leveranciers/leveranciers.vue'">
@@ -44,8 +44,16 @@ const deleteSupplier = (id) => {
             </NavLink>
         </div>
 
-            <!-- Searchbar -->
-            
+            <!-- Search bar -->
+            <Searchbar routeName="search.suppliers" />
+            <!-- The rest of your page content -->
+            <div>
+                <!-- Leverancier lijst vanaf zoekba -->
+                <ul>
+                    <li v-for="leverancier in leveranciers" :key="leverancier.id">{{ leverancier.name }}</li>
+                </ul>
+            </div>
+        </div>
 
             <table class="min-w-full border border-gray-300 rounded">
                 <thead class="bg-gray-100">
@@ -60,8 +68,8 @@ const deleteSupplier = (id) => {
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                    <tr 
-                        v-for="leverancier in props.leveranciers" 
+                    <tr
+                        v-for="leverancier in props.leveranciers"
                         :key="leverancier.id"
                         class="hover:bg-gray-50 transition">
                         <td class="px-6 py-4">{{ leverancier.name }}</td>
@@ -69,8 +77,8 @@ const deleteSupplier = (id) => {
                         <td class="px-6 py-4">{{ leverancier.phone_country_code }} {{ leverancier.phone_number }}</td>
                         <td class="px-6 py-4 flex justify-center gap-3">
                             <!-- Edit -->
-                            <button 
-                                @click="editSupplier(leverancier.id)" 
+                            <button
+                                @click="editSupplier(leverancier.id)"
                                 class="w-10 h-10 flex items-center justify-center rounded-full bg-[#ffd100] hover:brightness-90 transition"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#4d4d4d">
@@ -79,8 +87,8 @@ const deleteSupplier = (id) => {
                             </button>
 
                             <!-- Delete -->
-                            <button 
-                                @click="deleteSupplier(leverancier.id)" 
+                            <button
+                                @click="deleteSupplier(leverancier.id)"
                                 class="w-10 h-10 flex items-center justify-center rounded-full bg-red-500 hover:bg-red-600 transition"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="white">

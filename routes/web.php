@@ -67,3 +67,6 @@ Route::put('/leveranciers/{supplier}', [SupplierController::class, 'update'])->n
 // Verwijder leverancier route
 Route::delete('/leveranciers/{supplier}', [SupplierController::class, 'destroy'])->name('leveranciers.destroy');
 
+// Searchbars
+Route::get('/search_suppliers', [SupplierController::class, 'search'])->name('search.suppliers');
+
