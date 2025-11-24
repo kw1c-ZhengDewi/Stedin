@@ -3,7 +3,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
 import NavLink from "@/Components/NavLink.vue";
 import { router } from '@inertiajs/vue3';
-
+import Searchbar from '@/Components/Searchbar.vue';
 
 // Props from Laravel controller
 const props = defineProps({
@@ -48,50 +48,57 @@ const deleteSupplier = (id) => {
                 :active="$page.url === './Management/Leveranciers/leveranciers.vue'">Leverancier toevoegen
             </NavLink>
 
-            <!-- Searchbar -->
-            
-
-            <table class="min-w-full border border-gray-300 rounded">
-                <thead class="bg-gray-100">
-                    <tr>
-                        <th class="p-2 border">Naam</th>
-                        <th class="p-2 border">Email</th>
-                        <th class="p-2 border">Omschrijving</th>
-                        <th class="p-2 border">Telefoonnummer</th>
-                        <th class="p-2 border">Acties</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="leverancier in props.leveranciers" :key="leverancier.id" class="hover:bg-gray-50">
-                        <td class="p-2 border">{{ leverancier.name }}</td>
-                        <td class="p-2 border">{{ leverancier.email }}</td>
-                        <td class="p-2 border">{{ leverancier.supplier_description }}</td>
-                        <td class="p-2 border">{{ leverancier.phone_country_code }} {{ leverancier.phone_number }}</td>
-                        <!-- Bewerken of Verwijderen -->
-                        <td class="p-2 border justify-center flex gap-5">
-
-                            <!-- Edit Action  -->
-                            <button class="ActionBTN" @click="editSupplier(leverancier.id)">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-                                    width="24px" fill="currentColor">
-                                    <path
-                                        d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
-                                </svg>
-                            </button>
-
-                            <!-- Delete Action  -->
-                            <button class="ActionBTN" @click="deleteSupplier(leverancier.id)">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-                                    width="24px" fill="currentColor">
-                                    <path
-                                        d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
-                                </svg>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Search bar -->
+            <Searchbar routeName="search.suppliers" />
+            <!-- The rest of your page content -->
+            <div>
+                <!-- Leverancier lijst vanaf zoekba -->
+                <ul>
+                    <li v-for="leverancier in leveranciers" :key="leverancier.id">{{ leverancier.name }}</li>
+                </ul>
+            </div>
         </div>
+
+        <table class="min-w-full border border-gray-300 rounded">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="p-2 border">Naam</th>
+                    <th class="p-2 border">Email</th>
+                    <th class="p-2 border">Omschrijving</th>
+                    <th class="p-2 border">Telefoonnummer</th>
+                    <th class="p-2 border">Acties</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="leverancier in props.leveranciers" :key="leverancier.id" class="hover:bg-gray-50">
+                    <td class="p-2 border">{{ leverancier.name }}</td>
+                    <td class="p-2 border">{{ leverancier.email }}</td>
+                    <td class="p-2 border">{{ leverancier.supplier_description }}</td>
+                    <td class="p-2 border">{{ leverancier.phone_country_code }} {{ leverancier.phone_number }}</td>
+                    <!-- Bewerken of Verwijderen -->
+                    <td class="p-2 border justify-center flex gap-5">
+
+                        <!-- Edit Action  -->
+                        <button class="ActionBTN" @click="editSupplier(leverancier.id)">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="currentColor">
+                                <path
+                                    d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
+                            </svg>
+                        </button>
+
+                        <!-- Delete Action  -->
+                        <button class="ActionBTN" @click="deleteSupplier(leverancier.id)">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="currentColor">
+                                <path
+                                    d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </AppLayout>
 </template>
 
