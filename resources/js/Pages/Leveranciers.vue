@@ -3,6 +3,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
 import NavLink from "@/Components/NavLink.vue";
 import { router } from '@inertiajs/vue3';
+// import Searchbar from "@/Components/Searchbar.vue";
 
 // Props from Laravel controller
 const props = defineProps({
@@ -41,16 +42,6 @@ const deleteSupplier = (id) => {
                     :active="$page.url === './Management/Leveranciers/leveranciers.vue'">
                     <span class="text-xl font-bold">+</span> Leverancier toevoegen
                 </NavLink>
-            </div>
-
-            <!-- Search bar -->
-            <Searchbar routeName="search.suppliers" />
-            <!-- The rest of your page content -->
-            <div>
-                <!-- Leverancier lijst vanaf zoekba -->
-                <ul>
-                    <li v-for="leverancier in leveranciers" :key="leverancier.id">{{ leverancier.name }}</li>
-                </ul>
             </div>
         </div>
 

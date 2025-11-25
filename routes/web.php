@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -67,6 +68,15 @@ Route::put('/leveranciers/{supplier}', [SupplierController::class, 'update'])->n
 // Verwijder leverancier route
 Route::delete('/leveranciers/{supplier}', [SupplierController::class, 'destroy'])->name('leveranciers.destroy');
 
+
+// Maak een toevoegen project Pagina
+Route::get('/toevoegen_project', [ProjectController::class, 'index'])->name('project.index');
+
+// Gegevens ontvangen toevoegen Project Pagina
+Route::post('/toevoegen_project', [ProjectController::class, 'store'])->name('project.store');
+
+
+
 // Searchbars
-Route::get('/search_suppliers', [SupplierController::class, 'search'])->name('search.suppliers');
+// Route::get('/search_suppliers', [SupplierController::class, 'search'])->name('search.suppliers');
 
