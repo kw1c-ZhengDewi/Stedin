@@ -3,8 +3,9 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
 import NavLink from "@/Components/NavLink.vue";
 import { router } from '@inertiajs/vue3';
+// import Searchbar from "@/Components/Searchbar.vue";
 
-// Props van Laravel controller
+// Props from Laravel controller
 const props = defineProps({
     leveranciers: {
         type: Array,
@@ -30,8 +31,8 @@ const deleteSupplier = (id) => {
 </script>
 
 <template>
-<AppLayout title="Leveranciers">
-    <TheHeader />
+    <AppLayout title="Leveranciers">
+        <TheHeader />
 
     <div class="p-8 max-w-7xl mx-auto font-sans text-[#4d4d4d]">
         <div class="flex justify-between items-center mb-6">
@@ -104,6 +105,7 @@ const deleteSupplier = (id) => {
 button svg {
     transition: transform 0.2s;
 }
+
 button:hover svg {
     transform: scale(1.1);
 }

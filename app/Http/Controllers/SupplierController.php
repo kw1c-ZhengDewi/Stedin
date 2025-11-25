@@ -7,6 +7,7 @@ use Inertia\Controller;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Inertia\Response;
 
 class SupplierController extends Controller
 {
@@ -27,14 +28,8 @@ class SupplierController extends Controller
                 Rule::unique('suppliers', 'email'),
             ],
 
-              'supplier_description' => [
-                'nullable',
-                'string',
-                'max:100',
-                Rule::unique('suppliers', 'supplier_description'),
-            ],
-
-            // Regex: behalve cijfers en geen letters of andere karakters toegestaan.
+        'supplier_description' => ['nullable','string','max:100'],
+        // Regex: behalve cijfers en geen letters of andere karakters toegestaan.
         'phone_country_code' => ['nullable', 'string', 'max:5', 'regex:/^\+?[0-9]+$/'],
         'phone_number' => ['nullable', 'string', 'max:15', 'regex:/^[0-9]+$/'],
         ]);
@@ -86,13 +81,7 @@ class SupplierController extends Controller
                 Rule::unique('suppliers', 'email')->ignore($supplier->id),
             ],
 
-            'supplier_description' => [
-                'nullable',
-                'string',
-                'max:100',
-                Rule::unique('suppliers', 'supplier_description')->ignore($supplier->id),
-            ],
-
+            'supplier_description' => ['nullable','string','max:100'],
             'phone_country_code' => ['nullable', 'string', 'max:5', 'regex:/^\+?[0-9]+$/'],
             'phone_number' => ['nullable', 'string', 'max:15', 'regex:/^[0-9]+$/'],
         ]);
@@ -107,4 +96,22 @@ class SupplierController extends Controller
         $supplier->delete();
         return back()->with('success', 'Supplier deleted successfully');
     }
+
+    public function search(Request $request): Response {
+
+        // Alle waardes worden hier gehaald
+          $search = $request->search;
+
+          /* wanneer we een zoekwaarde hebben, kijken we of deze overeenkomt met iets in de titel of
+          inhoud */
+            $suppliers = Supplier::query()
+            ->when($search, fn($query) =>
+            $query->where('name', 'LIKE', "%{$search}%"))->get(); // fetch all matching suppliers
+
+        // retourneert de zoekwaarde als een paginaprop naar inertia/vue.
+        // Dit is de waarde die we in de data()-eigenschap van het Search Input.vue-component bekijken.
+        return Inertia::render('Leveranciers', ['suppliers' => $suppliers,
+        'search' => $search,]);
+    }
+
 }
