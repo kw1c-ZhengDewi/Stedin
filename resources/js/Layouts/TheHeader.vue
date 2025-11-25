@@ -1,27 +1,24 @@
 <script setup>
 import NavLink from "@/Components/NavLink.vue";
-import { ref } from "vue";
-const mobileMenuOpen = ref(false);
+import SearchBar from "@/Layouts/SearchBar.vue";
 </script>
 
 <template>
-    <header class="bg-gray-100 border-b border-gray-300 py-3 text-center">
-        <nav class="flex justify-center space-x-6">
-            <NavLink :href="route('project')" :active="$page.url === '/project'">Projecten
-            </NavLink>
+    <header class="bg-gray-100 border-b border-gray-300 py-3">
+        <div class="flex justify-between items-center max-w-5xl mx-auto px-4">
 
-            <NavLink :href="route('product')" :active="$page.url === '/product'">Producten
-            </NavLink>
+            <!-- Navigatie -->
+            <nav class="flex space-x-6">
+                <NavLink :href="route('project')" :active="$page.url === '/project'">Projecten</NavLink>
+                <NavLink :href="route('product')" :active="$page.url === '/product'">Producten</NavLink>
+                <NavLink :href="route('gebruikers')" :active="$page.url === '/gebruikers'">Gebruikers</NavLink>
+                <NavLink :href="route('leveranciers.display')" :active="$page.url === '/leveranciers'">Leveranciers</NavLink>
+                <NavLink :href="route('winkelwagen')" :active="$page.url === '/winkelwagen'">Winkelwagen</NavLink>
+            </nav>
 
-            <NavLink :href="route('gebruikers')" :active="$page.url === '/gebruikers'">Gebruikers
-            </NavLink>
-
-            <NavLink :href="route('leveranciers.display')" :active="$page.url === '/leveranciers'">Leveranciers
-            </NavLink>
-
-            <NavLink :href="route('winkelwagen')" :active="$page.url === '/winkelwagen'">Winkelwagen
-            </NavLink>
-        </nav>
+            <!-- Zoekbalk component -->
+            <SearchBar />
+        </div>
     </header>
 </template>
 
