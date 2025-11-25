@@ -23,8 +23,11 @@
         "vue": "^3.3.13"
     },
     "dependencies": {
+        "@inertiajs/inertia": "^0.11.1",
+        "@inertiajs/inertia-vue3": "^0.6.0",
         "@mui/icons-material": "^7.3.5",
         "material-symbols": "^0.39.2",
+        "vue-router": "^4.6.3",
         "ziggy-js": "^2.6.0"
     }
 }
