@@ -34,15 +34,15 @@ const deleteSupplier = (id) => {
     <AppLayout title="Leveranciers">
         <TheHeader />
 
-    <div class="p-8 max-w-7xl mx-auto font-sans text-[#4d4d4d]">
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Leverancierslijst</h1>
-            <NavLink 
-                :href="route('leveranciers.store')"
-                class="flex items-center gap-2 bg-[#ffd100] text-[#4d4d4d] font-semibold px-5 py-2 rounded-lg shadow hover:brightness-90 transition"
-            >
-                <span class="text-xl font-bold">+</span> Leverancier toevoegen
-            </NavLink>
+        <div class="p-8 max-w-7xl mx-auto font-sans text-[#4d4d4d]">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold">Leverancierslijst</h1>
+                <NavLink :href="route('leveranciers.create')"
+                    class="flex items-center gap-2 bg-[#ffd100] text-[#4d4d4d] font-semibold px-5 py-2 rounded-lg shadow hover:brightness-90 transition"
+                    :active="$page.url === './Management/Leveranciers/toevoegen_leverancier.vue'">
+                    <span class="text-xl font-bold">+</span> Leverancier toevoegen
+                </NavLink>
+            </div>
         </div>
 
         <div class="overflow-x-auto bg-white shadow rounded-lg">
@@ -64,8 +64,8 @@ const deleteSupplier = (id) => {
                         <td class="px-6 py-4">{{ leverancier.phone_country_code }} {{ leverancier.phone_number }}</td>
                         <td class="px-6 py-4 flex justify-center gap-3">
                             <!-- Edit knop -->
-                            <button 
-                                @click="editSupplier(leverancier.id)" 
+                            <button
+                                @click="editSupplier(leverancier.id)"
                                 class="w-10 h-10 flex items-center justify-center rounded-full bg-[#ffd100] hover:brightness-90 transition"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#4d4d4d">
@@ -74,8 +74,8 @@ const deleteSupplier = (id) => {
                             </button>
 
                             <!-- Delete knop -->
-                            <button 
-                                @click="deleteSupplier(leverancier.id)" 
+                            <button
+                                @click="deleteSupplier(leverancier.id)"
                                 class="w-10 h-10 flex items-center justify-center rounded-full bg-red-500 hover:bg-red-600 transition"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="white">

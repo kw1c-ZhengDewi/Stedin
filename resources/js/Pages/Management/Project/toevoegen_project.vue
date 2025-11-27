@@ -37,8 +37,7 @@ function submitProject() {
 
         <!-- Form Wrapper -->
         <FormSection @submitted="submitProject" class="m-10">
-            <template #projects>Nieuw Project toevoegen</template>
-            <template #description>Vul hier de gegevens van de Project in.</template>
+            <template #title>Nieuw Project toevoegen</template>
 
             <template #form>
                 <input type="text" placeholder="ProjectNummer" v-model="form.project_nr" class="col-span-6" />
@@ -51,7 +50,7 @@ function submitProject() {
                     {{ form.errors.project_name }}
                 </p>
 
-                <input type="text" placeholder="Beschrijvingen" v-model="form.order_note" class="col-span-6" />
+                <input type="text" placeholder="Omschrijvingen" v-model="form.order_note" class="col-span-6" />
                 <p v-if="form.errors.order_note" class="text-red-500 text-sm mt-1 whitespace-nowrap">
                     {{ form.errors.order_note }}
                 </p>

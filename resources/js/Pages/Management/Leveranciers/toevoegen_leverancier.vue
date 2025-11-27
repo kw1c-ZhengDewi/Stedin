@@ -47,27 +47,22 @@ function submitLeverancier() {
 <AppLayout title="Nieuwe Leverancier">
     <TheHeader />
 
-    <div class="max-w-xl mx-auto mt-12">
-        <div class="bg-white shadow-xl rounded-2xl p-8 border border-gray-100">
-            <h1 class="text-3xl font-bold text-gray-800 mb-8">Nieuw Leverancier toevoegen</h1>
-            <p class="text-gray-600 mb-6">Vul hier de gegevens van de leverancier in.</p>
+        <!-- Form Wrapper -->
+        <FormSection @submitted="submitLeverancier" class="m-10">
+            <template #title>Nieuw Leverancier toevoegen</template>
+            <template #description>
+                Vul hier de gegevens van de leverancier in.
+            </template>
+            <template #form>
+                <input type="text" placeholder="Naam" v-model="form.name" class="col-span-6" />
+                <p v-if="form.errors.name" class="text-red-500 text-sm mt-1 whitespace-nowrap">
+                    {{ form.errors.name }}
+                </p>
 
-            <form @submit.prevent="submitLeverancier" class="space-y-6">
-                <!-- Naam -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Naam</label>
-                    <input v-model="form.name" type="text"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]" />
-                    <p v-if="form.errors.name" class="text-red-500 text-sm mt-1">{{ form.errors.name }}</p>
-                </div>
-
-                <!-- Email -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
-                    <input v-model="form.email" type="email"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]" />
-                    <p v-if="form.errors.email" class="text-red-500 text-sm mt-1">{{ form.errors.email }}</p>
-                </div>
+                <input type="email" placeholder="Email" v-model="form.email" class="col-span-6" />
+                <p v-if="form.errors.email" class="text-red-500 text-sm mt-1 whitespace-nowrap">
+                    {{ form.errors.email }}
+                </p>
 
                 <!-- Omschrijving -->
                 <div>
