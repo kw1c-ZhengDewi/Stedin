@@ -1,7 +1,6 @@
 <script setup>
 import NavLink from "@/Components/NavLink.vue";
-import { ref } from "vue";
-const mobileMenuOpen = ref(false);
+import SearchBar from "@/Layouts/SearchBar.vue";
 </script>
 
 <template>
