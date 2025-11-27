@@ -37,9 +37,9 @@ const deleteSupplier = (id) => {
         <div class="p-8 max-w-7xl mx-auto font-sans text-[#4d4d4d]">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-3xl font-bold">Leverancierslijst</h1>
-                <NavLink :href="route('leveranciers.store')"
+                <NavLink :href="route('leveranciers.create')"
                     class="flex items-center gap-2 bg-[#ffd100] text-[#4d4d4d] font-semibold px-5 py-2 rounded-lg shadow hover:brightness-90 transition"
-                    :active="$page.url === './Management/Leveranciers/leveranciers.vue'">
+                    :active="$page.url === './Management/Leveranciers/toevoegen_leverancier.vue'">
                     <span class="text-xl font-bold">+</span> Leverancier toevoegen
                 </NavLink>
             </div>

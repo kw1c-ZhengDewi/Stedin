@@ -31,52 +31,49 @@ Route::middleware([
 Route::post('/register', [UserController::class, 'register'])->name('user.register');
 
 // Nav Project
-Route::get('/project', fn() => Inertia::render('Project'))->name('project');
+Route::get('/project', [ProjectController::class, 'index'])->name('project.index'); // Vervangende Rotue
 
 // Nav Product
-Route::get('/product', fn() => Inertia::render('Product'))->name('product');
+Route::get('/product', fn() => Inertia::render('Product'))->name('product.index');
 
 // Nav Gebruikers
-Route::get('/gebruikers', fn() => Inertia::render('Gebruikers'))->name('gebruikers');
+Route::get('/gebruikers', fn() => Inertia::render('Gebruikers'))->name('gebruikers.index');
 
-// Nav Leveranciers (Laten liggen?)
-Route::get('/leveranciers', fn() => Inertia::render('Leveranciers'))->name('leveranciers');
+// Nav Leveranciers, View all suppliers
+Route::get('/leveranciers', [SupplierController::class, 'index'])->name('leveranciers.index');
+
 
 // Nav Winkelwagen
-Route::get('/winkelwagen', fn() => Inertia::render('Winkelwagen'))->name('winkelwagen');
+Route::get('/winkelwagen', fn() => Inertia::render('Winkelwagen'))->name('winkelwagen.index');
 
 
 // Supplier Management
 
-// Import or add new suppliers
+// Show create supplier page
+Route::get('/toevoegen_leverancier', [SupplierController::class, 'create'])->name('leveranciers.create');
 
-// Maak een nieuw leverancier Pagina
-Route::get('/leveranciers', [SupplierController::class, 'index'])->name('leveranciers.index');
+// Save supplier page
+Route::post('/toevoegen_leverancier', [SupplierController::class, 'store'])->name('leveranciers.store');
 
-// Gegevens ontvangen vanaf nieuw_leverancier pagina
-Route::post('/leveranciers', [SupplierController::class, 'store'])->name('leveranciers.store');
-
-// Toont alle leveranciers
-Route::get('/lijst_leveranciers', [SupplierController::class, 'display'])->name('leveranciers.display');
-
-// Toon leverancier bewerkingsformulier
+// Show edit form supplier
 Route::get('/leveranciers/{supplier}/edit', [SupplierController::class, 'edit'])->name('leveranciers.edit');
 
-// Verwerk het indienen van een bewerkingsformulier
+// Update supplier
 Route::put('/leveranciers/{supplier}', [SupplierController::class, 'update'])->name('leveranciers.update');
 
-// Verwijder leverancier route
+// Delete supplier
 Route::delete('/leveranciers/{supplier}', [SupplierController::class, 'destroy'])->name('leveranciers.destroy');
 
 
-// Maak een toevoegen project Pagina
-Route::get('/toevoegen_project', [ProjectController::class, 'index'])->name('project.index');
+// Project Management
 
-// Gegevens ontvangen toevoegen Project Pagina
+// Show create project page
+Route::get('/toevoegen_project', [ProjectController::class, 'create'])->name('project.create');
+
+//  Save project page
 Route::post('/toevoegen_project', [ProjectController::class, 'store'])->name('project.store');
 
 
 
-// Searchbars
-// Route::get('/search_suppliers', [SupplierController::class, 'search'])->name('search.suppliers');
+
 

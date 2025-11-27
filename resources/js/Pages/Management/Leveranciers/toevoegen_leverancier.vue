@@ -54,9 +54,10 @@ function submitLeverancier() {
 
         <!-- Form Wrapper -->
         <FormSection @submitted="submitLeverancier" class="m-10">
-            <template #suppliers>Nieuw Leverancier toevoegen</template>
-            <template #description>Vul hier de gegevens van de leverancier in.</template>
-
+            <template #title>Nieuw Leverancier toevoegen</template>
+            <template #description>
+                Vul hier de gegevens van de leverancier in.
+            </template>
             <template #form>
                 <input type="text" placeholder="Naam" v-model="form.name" class="col-span-6" />
                 <p v-if="form.errors.name" class="text-red-500 text-sm mt-1 whitespace-nowrap">
