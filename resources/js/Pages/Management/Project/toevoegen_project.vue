@@ -50,7 +50,7 @@ function submitProject() {
                     {{ form.errors.project_name }}
                 </p>
 
-                <input type="text" placeholder="Beschrijvingen" v-model="form.order_note" class="col-span-6" />
+                <input type="text" placeholder="Omschrijvingen" v-model="form.order_note" class="col-span-6" />
                 <p v-if="form.errors.order_note" class="text-red-500 text-sm mt-1 whitespace-nowrap">
                     {{ form.errors.order_note }}
                 </p>

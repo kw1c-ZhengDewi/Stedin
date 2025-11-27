@@ -54,7 +54,6 @@ class SupplierController extends Controller
         ]);
     }
 
-
     public function edit(Supplier $supplier)
     {
         return Inertia::render('Management/Leveranciers/bewerk_leverancier', [

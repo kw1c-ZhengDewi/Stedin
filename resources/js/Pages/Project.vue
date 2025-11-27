@@ -2,6 +2,31 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
 import NavLink from "@/Components/NavLink.vue";
+import { router } from '@inertiajs/vue3'
+
+// Props from Laravel controller
+const props = defineProps({
+    projecten: {
+        type: Array,
+        default: () => [],
+    },
+});
+
+const editProject = (id) => {
+    router.visit(route('project.edit', id));
+};
+
+const deleteProject = (id) => {
+    if (confirm('Weet u zeker dat u deze project wilt verwijderen?')) {
+        router.delete(route('project.destroy', id), {
+            onSuccess: () => alert('Project succesvol verwijderd!'),
+            onError: (errors) => {
+                console.error(errors);
+                alert('Er is iets fout gegaan!');
+            },
+        });
+    }
+};
 </script>
 
 <template>
@@ -28,24 +53,29 @@ import NavLink from "@/Components/NavLink.vue";
                             <th class="px-6 py-3 text-left text-sm font-semibold text-[#4d4d4d]">Projectnummer</th>
                             <th class="px-6 py-3 text-left text-sm font-semibold text-[#4d4d4d]">Projectnaam</th>
                             <th class="px-6 py-3 text-left text-sm font-semibold text-[#4d4d4d]">Kosten</th>
-                            <th class="px-6 py-3 text-center text-sm font-semibold text-[#4d4d4d]">Beschrijving</th>
+                            <th class="px-6 py-3 text-center text-sm font-semibold text-[#4d4d4d]">Omschrijving</th>
                             <th class="px-6 py-3 text-center text-sm font-semibold text-[#4d4d4d]">Straatnummer</th>
                             <th class="px-6 py-3 text-center text-sm font-semibold text-[#4d4d4d]">Woonplaats</th>
                             <th class="px-6 py-3 text-center text-sm font-semibold text-[#4d4d4d]">Pronvincie/Staat</th>
                             <th class="px-6 py-3 text-center text-sm font-semibold text-[#4d4d4d]">Land</th>
                             <th class="px-6 py-3 text-center text-sm font-semibold text-[#4d4d4d]">Bezorgdatum</th>
+                            <th class="px-6 py-3 text-center text-sm font-semibold text-[#4d4d4d]">Acties</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        <tr v-for="leverancier in props.leveranciers" :key="leverancier.id"
-                            class="hover:bg-gray-50 transition">
-                            <td class="px-6 py-4">{{ leverancier.name }}</td>
-                            <td class="px-6 py-4">{{ leverancier.email }}</td>
-                            <td class="px-6 py-4">{{ leverancier.phone_country_code }} {{ leverancier.phone_number }}
-                            </td>
+                        <tr v-for="project in props.projecten" :key="project.id" class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4">{{ project.project_nr }}</td>
+                            <td class="px-6 py-4">{{ project.project_name }}</td>
+                            <td class="px-6 py-4">{{ project.cost_center }}</td>
+                            <td class="px-6 py-4">{{ project.order_note }}</td>
+                            <td class="px-6 py-4">{{ project.delivery_street }}</td>
+                            <td class="px-6 py-4">{{ project.city }}</td>
+                            <td class="px-6 py-4">{{ project.state_province }}</td>
+                            <td class="px-6 py-4">{{ project.country }}</td>
+                            <td class="px-6 py-4">{{ project.delivery_date }}</td>
                             <td class="px-6 py-4 flex justify-center gap-3">
                                 <!-- Edit -->
-                                <button @click="editSupplier(leverancier.id)"
+                                <button @click="editProject(project.id)"
                                     class="w-10 h-10 flex items-center justify-center rounded-full bg-[#ffd100] hover:brightness-90 transition">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960"
                                         width="20px" fill="#4d4d4d">
@@ -55,7 +85,7 @@ import NavLink from "@/Components/NavLink.vue";
                                 </button>
 
                                 <!-- Delete -->
-                                <button @click="deleteSupplier(leverancier.id)"
+                                <button @click="deleteProject(project.id)"
                                     class="w-10 h-10 flex items-center justify-center rounded-full bg-red-500 hover:bg-red-600 transition">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960"
                                         width="20px" fill="white">
@@ -65,16 +95,30 @@ import NavLink from "@/Components/NavLink.vue";
                                 </button>
                             </td>
                         </tr>
-                        <tr v-if="props.leveranciers.length === 0">
-                            <td colspan="4" class="px-6 py-4 text-center text-gray-500">Geen leveranciers gevonden.</td>
+                        <tr v-if="props.projecten.length === 0">
+                            <td colspan="4" class="px-6 py-4 text-center text-gray-500">Geen projecten gevonden.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </table>
-
     </AppLayout>
 </template>
 
 <!-- Custom CSS -->
-<style scoped></style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+.font-sans {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Hover effect voor iconen */
+button svg {
+    transition: transform 0.2s;
+}
+
+button:hover svg {
+    transform: scale(1.1);
+}
+</style>

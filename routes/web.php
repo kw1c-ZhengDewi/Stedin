@@ -30,8 +30,8 @@ Route::middleware([
 // Register Page
 Route::post('/register', [UserController::class, 'register'])->name('user.register');
 
-// Nav Project
-Route::get('/project', [ProjectController::class, 'index'])->name('project.index'); // Vervangende Rotue
+// Nav Project.index
+Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
 
 // Nav Product
 Route::get('/product', fn() => Inertia::render('Product'))->name('product.index');
@@ -39,9 +39,8 @@ Route::get('/product', fn() => Inertia::render('Product'))->name('product.index'
 // Nav Gebruikers
 Route::get('/gebruikers', fn() => Inertia::render('Gebruikers'))->name('gebruikers.index');
 
-// Nav Leveranciers, View all suppliers
+// Nav Leveranciers.index
 Route::get('/leveranciers', [SupplierController::class, 'index'])->name('leveranciers.index');
-
 
 // Nav Winkelwagen
 Route::get('/winkelwagen', fn() => Inertia::render('Winkelwagen'))->name('winkelwagen.index');
@@ -50,12 +49,12 @@ Route::get('/winkelwagen', fn() => Inertia::render('Winkelwagen'))->name('winkel
 // Supplier Management
 
 // Show create supplier page
-Route::get('/toevoegen_leverancier', [SupplierController::class, 'create'])->name('leveranciers.create');
+Route::get('/leverancier/create', [SupplierController::class, 'create'])->name('leveranciers.create');
 
 // Save supplier page
-Route::post('/toevoegen_leverancier', [SupplierController::class, 'store'])->name('leveranciers.store');
+Route::post('/leverancier', [SupplierController::class, 'store'])->name('leveranciers.store');
 
-// Show edit form supplier
+// Show edit form supplier page
 Route::get('/leveranciers/{supplier}/edit', [SupplierController::class, 'edit'])->name('leveranciers.edit');
 
 // Update supplier
@@ -68,10 +67,19 @@ Route::delete('/leveranciers/{supplier}', [SupplierController::class, 'destroy']
 // Project Management
 
 // Show create project page
-Route::get('/toevoegen_project', [ProjectController::class, 'create'])->name('project.create');
+Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
 
-//  Save project page
-Route::post('/toevoegen_project', [ProjectController::class, 'store'])->name('project.store');
+// Save project page
+Route::post('/project', [ProjectController::class, 'store'])->name('project.store');
+
+// Show edit form project page
+Route::get('/project/{project}/edit', [ProjectController::class, 'edit'])->name('project.edit');
+
+// Update project
+Route::put('/project/{project}', [ProjectController::class, 'update'])->name('project.update');
+
+// Delete project
+Route::delete('/project/{project}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
 
 
