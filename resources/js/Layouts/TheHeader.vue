@@ -4,21 +4,23 @@ import SearchBar from "@/Layouts/SearchBar.vue";
 </script>
 
 <template>
-    <header class="bg-gray-100 border-b border-gray-300 py-3">
-        <div class="flex justify-between items-center max-w-5xl mx-auto px-4">
+    <header class="bg-gray-100 border-b border-gray-300 py-3 text-center">
+        <nav class="flex justify-center space-x-6">
+            <NavLink :href="route('project.index')" :active="$page.url === '/project'">Projecten
+            </NavLink>
 
-            <!-- Navigatie -->
-            <nav class="flex space-x-6">
-                <NavLink :href="route('project')" :active="$page.url === '/project'">Projecten</NavLink>
-                <NavLink :href="route('product')" :active="$page.url === '/product'">Producten</NavLink>
-                <NavLink :href="route('gebruikers')" :active="$page.url === '/gebruikers'">Gebruikers</NavLink>
-                <NavLink :href="route('leveranciers.display')" :active="$page.url === '/leveranciers'">Leveranciers</NavLink>
-                <NavLink :href="route('winkelwagen')" :active="$page.url === '/winkelwagen'">Winkelwagen</NavLink>
-            </nav>
+            <NavLink :href="route('product.index')" :active="$page.url === '/product'">Producten
+            </NavLink>
 
-            <!-- Zoekbalk component -->
-            <SearchBar />
-        </div>
+            <NavLink :href="route('gebruikers.index')" :active="$page.url === '/gebruikers'">Gebruikers
+            </NavLink>
+
+            <NavLink :href="route('leveranciers.index')" :active="$page.url === '/leveranciers'">Leveranciers
+            </NavLink>
+
+            <NavLink :href="route('winkelwagen.index')" :active="$page.url === '/winkelwagen'">Winkelwagen
+            </NavLink>
+        </nav>
     </header>
 </template>
 
