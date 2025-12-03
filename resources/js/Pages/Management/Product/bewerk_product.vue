@@ -8,5 +8,4 @@ import { useForm } from "@inertiajs/vue3";
 <template>
 </template>
 
-
 <style scoped></style>

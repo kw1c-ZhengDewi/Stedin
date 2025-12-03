@@ -1,8 +1,7 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
-import FormSection from "@/Components/FormSection.vue";
 import { useForm } from "@inertiajs/vue3";
 
 const form = useForm({
@@ -17,7 +16,6 @@ const form = useForm({
     delivery_date: '',
 });
 
-// Formulier versturen
 function submitProject() {
     form.post(route("project.store"), {
         onSuccess: () => {
@@ -95,8 +93,9 @@ function submitProject() {
 </template>
 
 <style scoped>
-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+.font-sans {
+    font-family: 'Open Sans', sans-serif;
 }
 </style>
