@@ -3,6 +3,7 @@ import { ref, watch } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
 import { useForm } from "@inertiajs/vue3";
+import FormSection from "@/Components/FormSection.vue";
 
 const countryData = {
     Netherlands: { code: "+31", maxLength: 9 },
@@ -30,7 +31,7 @@ watch(selectedCountry, (newCountry) => {
     form.phone_number = "";
 });
 
-function submit() {
+function submitLeverancier() {
     form.post(route("leveranciers.store"), {
         onSuccess: () => {
             alert("Nieuwe leverancier aangemaakt!");
@@ -45,39 +46,35 @@ function submit() {
 </script>
 
 <template>
-<AppLayout title="Nieuwe Leverancier">
-    <TheHeader />
+    <AppLayout title="Nieuwe Leverancier">
+        <TheHeader></TheHeader>
 
-    <FormSection @submitted="submitLeverancier" class="m-10">
-        <template #title>Nieuw Leverancier toevoegen</template>
+        <FormSection @submitted="submitLeverancier" class="m-10">
+            <template #title>Nieuw Leverancier toevoegen</template>
 
-        <template #description>
-            Vul hier de gegevens van de leverancier in.
-        </template>
+            <template #description>
+                Vul hier de gegevens van de leverancier in.
+            </template>
 
-        <template #form>
+            <template #form>
+                <!-- Naam -->
+                <input type="text" placeholder="Naam" v-model="form.name" class="col-span-6" />
+                <p v-if="form.errors.name" class="text-red-500 text-sm mt-1 whitespace-nowrap">
+                    {{ form.errors.name }}
+                </p>
 
-            <!-- Naam -->
-            <input type="text" placeholder="Naam" v-model="form.name" class="col-span-6" />
-            <p v-if="form.errors.name" class="text-red-500 text-sm mt-1 whitespace-nowrap">
-                {{ form.errors.name }}
-            </p>
+                <!-- Email -->
+                <input type="email" placeholder="Email" v-model="form.email" class="col-span-6" />
+                <p v-if="form.errors.email" class="text-red-500 text-sm mt-1 whitespace-nowrap">
+                    {{ form.errors.email }}
+                </p>
 
-            <!-- Email -->
-            <input type="email" placeholder="Email" v-model="form.email" class="col-span-6" />
-            <p v-if="form.errors.email" class="text-red-500 text-sm mt-1 whitespace-nowrap">
-                {{ form.errors.email }}
-            </p>
-
-            <!-- Omschrijving -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Omschrijving</label>
-                <input
-                    v-model="form.supplier_description"
-                    type="text"
-                    class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]"
-                />
-            </div>
+                <!-- Omschrijving -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Omschrijving</label>
+                    <input v-model="form.supplier_description" type="text"
+                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]" />
+                </div>
 
                 <!-- TELEFOONNUMMER -->
                 <div>
@@ -100,11 +97,9 @@ function submit() {
                     class="w-full bg-[#ffd100] text-[#4d4d4d] py-3 rounded-lg text-lg font-semibold shadow-md hover:brightness-90 transition disabled:opacity-50">
                     Toevoegen
                 </button>
-
-            </form>
-        </div>
-    </div>
-</AppLayout>
+            </template>
+        </FormSection>
+    </AppLayout>
 </template>
 
 <style scoped>
