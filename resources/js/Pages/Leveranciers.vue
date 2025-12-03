@@ -90,7 +90,7 @@ const deleteSupplier = (id) => {
                 </tbody>
             </table>
         </div>
-    </div>
+    
 </AppLayout>
 </template>
 
