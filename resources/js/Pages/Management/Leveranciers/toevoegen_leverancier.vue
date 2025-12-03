@@ -45,8 +45,8 @@ function submitLeverancier() {
 </script>
 
 <template>
-<AppLayout title="Nieuwe Leverancier">
-    <TheHeader />
+    <AppLayout title="Nieuwe Leverancier">
+        <TheHeader />
 
     <FormSection @submitted="submitLeverancier" class="m-10">
         <template #title>Nieuw Leverancier toevoegen</template>
@@ -79,61 +79,29 @@ function submitLeverancier() {
                 />
             </div>
 
-            <!-- Landcode -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Landcode</label>
-                <select
-                    v-model="selectedCountry"
-                    class="w-full p-3 border rounded-lg shadow-sm bg-white focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]"
-                >
-                    <option disabled value="">Selecteer land</option>
-                    <option
-                        v-for="(data, country) in countryData"
-                        :key="country"
-                        :value="country"
-                    >
-                        {{ country }} ({{ data.code }})
-                    </option>
-                </select>
-            </div>
+                <!-- Telefoonnummer -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Telefoonnummer</label>
+                    <div class="flex gap-2">
+                        <input type="text" :value="form.phone_country_code" disabled
+                            class="w-28 p-3 border rounded-lg bg-gray-100 text-gray-600" />
 
-            <!-- Telefoonnummer -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Telefoonnummer</label>
-                <div class="flex gap-2">
-                    <input
-                        type="text"
-                        :value="form.phone_country_code"
-                        disabled
-                        class="w-28 p-3 border rounded-lg bg-gray-100 text-gray-600"
-                    />
-
-                    <input
-                        v-model="form.phone_number"
-                        type="text"
-                        :maxlength="countryData[selectedCountry].maxLength"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]"
-                    />
+                        <input v-model="form.phone_number" type="text"
+                            :maxlength="countryData[selectedCountry].maxLength"
+                            class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]" />
+                    </div>
+                    <p v-if="form.errors.phone_number" class="text-red-500 text-sm mt-1">{{ form.errors.phone_number }}
+                    </p>
                 </div>
 
-                <p v-if="form.errors.phone_number" class="text-red-500 text-sm mt-1">
-                    {{ form.errors.phone_number }}
-                </p>
-            </div>
-
-            <!-- Submit knop -->
-            <button
-                type="submit"
-                :disabled="form.processing"
-                class="w-full bg-[#ffd100] text-[#4d4d4d] py-3 rounded-lg text-lg font-semibold shadow-md hover:brightness-90 transition disabled:opacity-50"
-            >
-                Toevoegen
-            </button>
-
-        </template>
-    </FormSection>
-
-</AppLayout>
+                <!-- Submit knop -->
+                <button type="submit" :disabled="form.processing"
+                    class="w-full bg-[#ffd100] text-[#4d4d4d] py-3 rounded-lg text-lg font-semibold shadow-md hover:brightness-90 transition disabled:opacity-50">
+                    Toevoegen
+                </button>
+            </template>
+        </FormSection>
+    </AppLayout>
 </template>
 
 <style scoped>

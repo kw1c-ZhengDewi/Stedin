@@ -2,6 +2,14 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
 import NavLink from "@/Components/NavLink.vue";
+
+// Props from Laravel controller
+const props = defineProps({
+    projecten: {
+        type: Array,
+        default: () => [],
+    },
+});
 </script>
 
 <template>

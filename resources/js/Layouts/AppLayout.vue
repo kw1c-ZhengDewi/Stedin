@@ -219,7 +219,8 @@ const logout = () => {
 
                             <div>
                                 <div class="font-medium text-base text-gray-800">
-                                    {{ $page.props.auth.user.name }}
+                                    <!-- Null-safety check  -->
+                                    {{ $page.props.auth.user ? $page.props.auth.user.name : 'Guest' }}
                                 </div>
                                 <div class="font-medium text-sm text-gray-500">
                                     {{ $page.props.auth.user.email }}
