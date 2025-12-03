@@ -44,8 +44,8 @@ function submitLeverancier() {
 </script>
 
 <template>
-<AppLayout title="Nieuwe Leverancier">
-    <TheHeader />
+    <AppLayout title="Nieuwe Leverancier">
+        <TheHeader />
 
         <!-- Form Wrapper -->
         <FormSection @submitted="submitLeverancier" class="m-10">
@@ -94,7 +94,8 @@ function submitLeverancier() {
                             :maxlength="countryData[selectedCountry].maxLength"
                             class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]" />
                     </div>
-                    <p v-if="form.errors.phone_number" class="text-red-500 text-sm mt-1">{{ form.errors.phone_number }}</p>
+                    <p v-if="form.errors.phone_number" class="text-red-500 text-sm mt-1">{{ form.errors.phone_number }}
+                    </p>
                 </div>
 
                 <!-- Submit knop -->
@@ -102,10 +103,9 @@ function submitLeverancier() {
                     class="w-full bg-[#ffd100] text-[#4d4d4d] py-3 rounded-lg text-lg font-semibold shadow-md hover:brightness-90 transition disabled:opacity-50">
                     Toevoegen
                 </button>
-            </form>
-        </div>
-    </div>
-</AppLayout>
+            </template>
+        </FormSection>
+    </AppLayout>
 </template>
 
 <style scoped>
