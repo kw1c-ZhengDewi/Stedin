@@ -12,6 +12,7 @@ const props = defineProps({
     },
 });
 
+
 const editProject = (id) => {
     router.visit(route('project.edit', id));
 };
@@ -38,7 +39,7 @@ const deleteProject = (id) => {
                 <h1 class="text-3xl font-bold">Projectlijst</h1>
                 <NavLink :href="route('project.create')"
                     class="flex items-center gap-2 bg-[#ffd100] text-[#4d4d4d] font-semibold px-5 py-2 rounded-lg shadow hover:brightness-90 transition"
-                    :active="$page.url === './Management/Project/toevoegen_project.vue'">
+                    :active="route().current('project.create')">
                     <span class="text-xl font-bold">+</span> Project toevoegen
                 </NavLink>
             </div>

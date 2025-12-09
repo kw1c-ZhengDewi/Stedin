@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
@@ -34,16 +35,16 @@ Route::middleware([
 // Register Page
 Route::post('/register', [UserController::class, 'register'])->name('user.register');
 
-// Nav Project.index
+// Nav Project
 Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
 
 // Nav Product
-Route::get('/product', fn() => Inertia::render('Product'))->name('product.index');
+Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 
 // Nav Gebruikers
 Route::get('/gebruikers', fn() => Inertia::render('Gebruikers'))->name('gebruikers.index');
 
-// Nav Leveranciers.index
+// Nav Leveranciers
 Route::get('/leveranciers', [SupplierController::class, 'index'])->name('leveranciers.index');
 
 // Nav Winkelwagen
@@ -53,10 +54,10 @@ Route::get('/winkelwagen', fn() => Inertia::render('Winkelwagen'))->name('winkel
 // Supplier Management
 
 // Show create supplier page
-Route::get('/leverancier/create', [SupplierController::class, 'create'])->name('leveranciers.create');
+Route::get('/leveranciers/create', [SupplierController::class, 'create'])->name('leveranciers.create');
 
 // Save supplier page
-Route::post('/leverancier', [SupplierController::class, 'store'])->name('leveranciers.store');
+Route::post('/leveranciers', [SupplierController::class, 'store'])->name('leveranciers.store');
 
 // Show edit form supplier page
 Route::get('/leveranciers/{supplier}/edit', [SupplierController::class, 'edit'])->name('leveranciers.edit');
@@ -86,7 +87,12 @@ Route::put('/project/{project}', [ProjectController::class, 'update'])->name('pr
 Route::delete('/project/{project}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
 
-// User Management
+// Product
 
+// Show create project page
+Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+
+// Save project page
+Route::post('/product', [ProductController::class, 'store'])->name('product.store');
 
 

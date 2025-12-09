@@ -2,6 +2,7 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
 import { useForm } from "@inertiajs/vue3";
+import FormSection from "@/Components/FormSection.vue";
 
 const form = useForm({
     project_nr: '',
@@ -29,22 +30,23 @@ function submitProject() {
 </script>
 
 <template>
-<AppLayout title="Nieuw Project">
-    <TheHeader />
-
-    <div class="max-w-xl mx-auto mt-12">
-        <div class="bg-white shadow-xl rounded-2xl p-8 border border-gray-100">
-            
+    <AppLayout title="Nieuw Project">
+        <TheHeader></TheHeader>
+        <FormSection @submitted="submitProject" class="m-10">
             <!-- Title -->
-            <h1 class="text-3xl font-bold text-[#4d4d4d] mb-8">Nieuw Project Toevoegen</h1>
+            <template #title>
+                <h1 class="text-3xl font-bold text-[#4d4d4d] mb-8">Nieuw Project Toevoegen</h1>
+            </template>
 
-            <form @submit.prevent="submitProject" class="space-y-6">
+            <template #description>
+                Vul hier de gegevens van de leverancier in.
+            </template>
 
+            <template #form>
                 <!-- Project nummer -->
                 <div>
                     <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Projectnummer</label>
-                    <input v-model="form.project_nr" type="text"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 
+                    <input v-model="form.project_nr" type="text" class="w-full p-3 border rounded-lg shadow-sm focus:ring-2
                         focus:ring-[#ffd100] focus:border-[#ffd100]" />
                     <p v-if="form.errors.project_nr" class="text-red-500 text-sm mt-1">
                         {{ form.errors.project_nr }}
@@ -54,8 +56,7 @@ function submitProject() {
                 <!-- Project naam -->
                 <div>
                     <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Projectnaam</label>
-                    <input v-model="form.project_name" type="text"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 
+                    <input v-model="form.project_name" type="text" class="w-full p-3 border rounded-lg shadow-sm focus:ring-2
                         focus:ring-[#ffd100] focus:border-[#ffd100]" />
                     <p v-if="form.errors.project_name" class="text-red-500 text-sm mt-1">
                         {{ form.errors.project_name }}
@@ -65,8 +66,7 @@ function submitProject() {
                 <!-- Omschrijving -->
                 <div>
                     <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Omschrijving</label>
-                    <input v-model="form.order_note" type="text"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 
+                    <input v-model="form.order_note" type="text" class="w-full p-3 border rounded-lg shadow-sm focus:ring-2
                         focus:ring-[#ffd100] focus:border-[#ffd100]" />
                     <p v-if="form.errors.order_note" class="text-red-500 text-sm mt-1">
                         {{ form.errors.order_note }}
@@ -76,8 +76,7 @@ function submitProject() {
                 <!-- Kostenplaats -->
                 <div>
                     <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Kostenplaats</label>
-                    <input v-model="form.cost_center" type="text"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 
+                    <input v-model="form.cost_center" type="text" class="w-full p-3 border rounded-lg shadow-sm focus:ring-2
                         focus:ring-[#ffd100] focus:border-[#ffd100]" />
                     <p v-if="form.errors.cost_center" class="text-red-500 text-sm mt-1">
                         {{ form.errors.cost_center }}
@@ -87,8 +86,7 @@ function submitProject() {
                 <!-- Straat -->
                 <div>
                     <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Straat + nummer</label>
-                    <input v-model="form.delivery_street" type="text"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 
+                    <input v-model="form.delivery_street" type="text" class="w-full p-3 border rounded-lg shadow-sm focus:ring-2
                         focus:ring-[#ffd100] focus:border-[#ffd100]" />
                     <p v-if="form.errors.delivery_street" class="text-red-500 text-sm mt-1">
                         {{ form.errors.delivery_street }}
@@ -98,8 +96,7 @@ function submitProject() {
                 <!-- Woonplaats -->
                 <div>
                     <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Woonplaats</label>
-                    <input v-model="form.city" type="text"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 
+                    <input v-model="form.city" type="text" class="w-full p-3 border rounded-lg shadow-sm focus:ring-2
                         focus:ring-[#ffd100] focus:border-[#ffd100]" />
                     <p v-if="form.errors.city" class="text-red-500 text-sm mt-1">
                         {{ form.errors.city }}
@@ -109,8 +106,7 @@ function submitProject() {
                 <!-- Staat / Provincie -->
                 <div>
                     <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Staat / Provincie</label>
-                    <input v-model="form.state_province" type="text"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 
+                    <input v-model="form.state_province" type="text" class="w-full p-3 border rounded-lg shadow-sm focus:ring-2
                         focus:ring-[#ffd100] focus:border-[#ffd100]" />
                     <p v-if="form.errors.state_province" class="text-red-500 text-sm mt-1">
                         {{ form.errors.state_province }}
@@ -120,8 +116,7 @@ function submitProject() {
                 <!-- Land -->
                 <div>
                     <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Land</label>
-                    <input v-model="form.country" type="text"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 
+                    <input v-model="form.country" type="text" class="w-full p-3 border rounded-lg shadow-sm focus:ring-2
                         focus:ring-[#ffd100] focus:border-[#ffd100]" />
                     <p v-if="form.errors.country" class="text-red-500 text-sm mt-1">
                         {{ form.errors.country }}
@@ -131,8 +126,7 @@ function submitProject() {
                 <!-- Leverdatum -->
                 <div>
                     <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Leverdatum</label>
-                    <input v-model="form.delivery_date" type="date"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 
+                    <input v-model="form.delivery_date" type="date" class="w-full p-3 border rounded-lg shadow-sm focus:ring-2
                         focus:ring-[#ffd100] focus:border-[#ffd100]" />
                     <p v-if="form.errors.delivery_date" class="text-red-500 text-sm mt-1">
                         {{ form.errors.delivery_date }}
@@ -140,17 +134,13 @@ function submitProject() {
                 </div>
 
                 <!-- Submit button -->
-                <button type="submit"
-                    class="w-full bg-[#ffd100] text-[#4d4d4d] py-3 rounded-lg text-lg font-semibold 
-                    shadow-md hover:brightness-90 transition disabled:opacity-50"
-                    :disabled="form.processing">
+                <button type="submit" class="w-full bg-[#ffd100] text-[#4d4d4d] py-3 rounded-lg text-lg font-semibold
+                    shadow-md hover:brightness-90 transition disabled:opacity-50" :disabled="form.processing">
                     Toevoegen
                 </button>
-
-            </form>
-        </div>
-    </div>
-</AppLayout>
+            </template>
+        </FormSection>
+    </AppLayout>
 </template>
 
 <style scoped>

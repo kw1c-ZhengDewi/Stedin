@@ -3,6 +3,7 @@ import { ref, watch } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TheHeader from "@/Layouts/TheHeader.vue";
 import { useForm } from "@inertiajs/vue3";
+import FormSection from "@/Components/FormSection.vue";
 
 const countryData = {
     Netherlands: { code: "+31", maxLength: 9 },
@@ -30,7 +31,7 @@ watch(selectedCountry, (newCountry) => {
     form.phone_number = "";
 });
 
-function submit() {
+function submitLeverancier() {
     form.post(route("leveranciers.store"), {
         onSuccess: () => {
             alert("Nieuwe leverancier aangemaakt!");
@@ -45,51 +46,34 @@ function submit() {
 </script>
 
 <template>
-<AppLayout title="Nieuwe Leverancier">
-    <TheHeader />
+    <AppLayout title="Nieuwe Leverancier">
+        <TheHeader></TheHeader>
 
-    <div class="max-w-xl mx-auto mt-12">
-        <div class="bg-white shadow-xl rounded-2xl p-8 border border-gray-100">
-            <h1 class="text-3xl font-bold text-[#4d4d4d] mb-8">Nieuwe Leverancier</h1>
+        <FormSection @submitted="submitLeverancier" class="m-10">
+            <template #title>Nieuw Leverancier toevoegen</template>
 
-            <form @submit.prevent="submit" class="space-y-6">
+            <template #description>
+                Vul hier de gegevens van de leverancier in.
+            </template>
 
-                <!-- NAAM -->
+            <template #form>
+                <!-- Naam -->
+                <input type="text" placeholder="Naam" v-model="form.name" class="col-span-6" />
+                <p v-if="form.errors.name" class="text-red-500 text-sm mt-1 whitespace-nowrap">
+                    {{ form.errors.name }}
+                </p>
+
+                <!-- Email -->
+                <input type="email" placeholder="Email" v-model="form.email" class="col-span-6" />
+                <p v-if="form.errors.email" class="text-red-500 text-sm mt-1 whitespace-nowrap">
+                    {{ form.errors.email }}
+                </p>
+
+                <!-- Omschrijving -->
                 <div>
-                    <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Naam</label>
-                    <input v-model="form.name" type="text"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]" />
-                    <p v-if="form.errors.name" class="text-red-500 text-sm mt-1">{{ form.errors.name }}</p>
-                </div>
-
-                <!-- EMAIL -->
-                <div>
-                    <label class="block text-sm font-medium text-[#4d4d4d] mb-1">E-mail</label>
-                    <input v-model="form.email" type="email"
-                        class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]" />
-                    <p v-if="form.errors.email" class="text-red-500 text-sm mt-1">{{ form.errors.email }}</p>
-                </div>
-
-                <!-- OMSCHRIJVING -->
-                <div>
-                    <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Omschrijving</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Omschrijving</label>
                     <input v-model="form.supplier_description" type="text"
                         class="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]" />
-                    <p v-if="form.errors.supplier_description" class="text-red-500 text-sm mt-1">
-                        {{ form.errors.supplier_description }}
-                    </p>
-                </div>
-
-                <!-- LANDCODE -->
-                <div>
-                    <label class="block text-sm font-medium text-[#4d4d4d] mb-1">Landcode</label>
-                    <select v-model="selectedCountry"
-                        class="w-full p-3 border rounded-lg shadow-sm bg-white focus:ring-2 focus:ring-[#ffd100] focus:border-[#ffd100]">
-                        <option disabled value="">Selecteer land</option>
-                        <option v-for="(data, country) in countryData" :key="country" :value="country">
-                            {{ country }} ({{ data.code }})
-                        </option>
-                    </select>
                 </div>
 
                 <!-- TELEFOONNUMMER -->
@@ -113,11 +97,9 @@ function submit() {
                     class="w-full bg-[#ffd100] text-[#4d4d4d] py-3 rounded-lg text-lg font-semibold shadow-md hover:brightness-90 transition disabled:opacity-50">
                     Toevoegen
                 </button>
-
-            </form>
-        </div>
-    </div>
-</AppLayout>
+            </template>
+        </FormSection>
+    </AppLayout>
 </template>
 
 <style scoped>

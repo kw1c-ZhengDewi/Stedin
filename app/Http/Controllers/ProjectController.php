@@ -9,8 +9,7 @@ use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
 {
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $validated = $request->validate([
             'project_nr' => [
                 'required',
@@ -36,7 +35,7 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return Inertia::render('Management/Project/toevoegen_project'); // your Vue page
+        return Inertia::render('Management/Project/toevoegen_project');
     }
 
     public function index()
